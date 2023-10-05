@@ -21,7 +21,7 @@ public class Nouchi : MonoBehaviour
         _kukaku = new Vector2[_NouchiMaxCount];
         for(int i=0; i < _NouchiMaxCount; i++)
         {
-            _kukaku[i] = new Vector2(transform.position.x+(float)(i%8)-3.5f, transform.position.y+(float)(i/8)-1.5f);
+            _kukaku[i] = new Vector2(transform.position.x+(float)(i%8)*0.95f-3.3f, transform.position.y+(float)(i/8)*0.9f-1.4f);
         }
     }
 
