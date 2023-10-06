@@ -58,7 +58,7 @@ public class BadgeManager : MonoBehaviour
         
     }
 
-    void SetActive(GameObject obj, bool isActive)
+    private void SetActive(GameObject obj, bool isActive)
     {
         BadgeScript badge = obj.GetComponent<BadgeScript>();
         badge.SetActive(isActive);

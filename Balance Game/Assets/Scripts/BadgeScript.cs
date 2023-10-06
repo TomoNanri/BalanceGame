@@ -25,6 +25,10 @@ public class BadgeScript : MonoBehaviour
     }
     public void SetActive(bool isActive)
     {
+        if (_ChoiText == null)
+        {
+            _ChoiText = transform.Find("ChoiText").gameObject;
+        }
         if (isActive)
         {
 
