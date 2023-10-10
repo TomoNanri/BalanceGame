@@ -7,17 +7,18 @@ public class Nouchi : MonoBehaviour
     public GameObject Tanbo;
     public GameObject Hatake;
     public int TanoKazu;
+
     [SerializeField]
     private int _NouchiMaxCount = 32;
     [SerializeField]
     private Vector2[] _kukaku;
 
     [SerializeField]
-    private int count = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        TanoKazu = _NouchiMaxCount / 2;
         _kukaku = new Vector2[_NouchiMaxCount];
         for(int i=0; i < _NouchiMaxCount; i++)
         {
@@ -30,7 +31,6 @@ public class Nouchi : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            count++;
             if (transform.childCount != 0)
             {
                 for(int c = 0; c < _NouchiMaxCount; c++)
@@ -39,21 +39,15 @@ public class Nouchi : MonoBehaviour
                     Destroy(child.gameObject);
                 }
             }
-            if (count % 2 == 1)
+            for (int c = 0; c < TanoKazu; c++)
             {
-                for (int c = 0; c < _NouchiMaxCount; c++)
-                {
-                    var child = Instantiate(Tanbo, this.transform, false);
-                    child.transform.position = _kukaku[c];
-                }
+                var child = Instantiate(Tanbo, this.transform, false);
+                child.transform.position = _kukaku[c];
             }
-            else
+            for (int c = TanoKazu; c < _NouchiMaxCount; c++)
             {
-                for (int c = 0; c < _NouchiMaxCount; c++)
-                {
-                    var child = Instantiate(Hatake, this.transform, false);
-                    child.transform.position = _kukaku[c];
-                }
+                var child = Instantiate(Hatake, this.transform, false);
+                child.transform.position = _kukaku[c];
             }
         }
     }
