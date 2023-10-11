@@ -13,6 +13,7 @@ public class GameStateChild_Loading : AbstractStateChild
     public override void OnEnter()
     {
         // PlayerPrefs‚Ì“Ç‚İ‚İ
+        Debug.Log($"[{this.name}] Enter Loading State!");
     }
     public override void OnExit()
     {

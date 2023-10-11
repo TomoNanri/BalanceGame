@@ -14,6 +14,7 @@ public class GameStateChild_Intro : AbstractStateChild
     }
     public override void OnEnter()
     {
+        Debug.Log($"[{this.name}] Enter Intro State!");
         _introCanvas.SetActive(true);
     }
     public override void OnExit()
@@ -27,10 +28,12 @@ public class GameStateChild_Intro : AbstractStateChild
     {
         if (_gm.OnNewGame)
         {
+            _gm.OnNewGame = false;
             return (int)GameManager.StateType.WaitInput;
         }
         if (_gm.OnLoadGame)
         {
+            _gm.OnLoadGame = false;
             return (int)GameManager.StateType.Loading;
         }
         return (int)StateType;

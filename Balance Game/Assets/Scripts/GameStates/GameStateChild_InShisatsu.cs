@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateChild_WaitInput : AbstractStateChild
+public class GameStateChild_InShisatsu : AbstractStateChild
 {
     private GameManager _gm;
     private Oshiro _oshiro;
@@ -14,20 +14,22 @@ public class GameStateChild_WaitInput : AbstractStateChild
     }
     public override void OnEnter()
     {
-        // 施政メニューの選択を可能にする（城選択可能）
-        Debug.Log($"[{this.name}] Enter WaitInput State!");
-
-        _gm.StateByButton = GameManager.StateType.WaitInput;
-        _oshiro.IsSelectable = true;
+        //// 施政メニューの選択を可能にする（城選択可能）
+        //Debug.Log($"[{this.name}] Enter WaitInput State!");
+        //_oshiro.IsSelectable = true;
     }
     public override void OnExit()
     {
-        // 施政メニューの選択を不可にする（城選択不能）
-        _oshiro.IsSelectable = false;
+        //// 施政メニューの選択を不可にする（城選択不能）
+        //_oshiro.IsSelectable = false;
     }
 
     public override int StateUpdate()
     {
-        return (int)_gm.StateByButton;
+        //if (_gm.OnTurnEnd)
+        //{
+        //}
+        return (int)GameManager.StateType.WaitInput;
     }
+
 }

@@ -7,6 +7,7 @@ public class GameStateChild_Initialize : AbstractStateChild
     private bool _gameInitialized = false;
     public override void OnEnter()
     {
+        Debug.Log($"[{this.name}] Enter Initialize State!");
         _gameInitialized = true;
     }
     public override void OnExit()
