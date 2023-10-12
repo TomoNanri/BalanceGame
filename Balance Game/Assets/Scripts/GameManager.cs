@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : AbstractStateController
 {
@@ -10,13 +11,15 @@ public class GameManager : AbstractStateController
         Intro, 
         Loading, 
         WaitInput,
+        InMainMenu,
         InNengu, 
         InTahataHiritsu, 
         InSuidenGijutsu, 
         InHatasakuGijutsu, 
         InNouguKounyuu, 
         InShisatsu, 
-        InMatsuri, 
+        InMatsuri,
+        InKyusai,
         InPass,
         Progress, 
         GameOver
@@ -31,6 +34,8 @@ public class GameManager : AbstractStateController
         stateDic[(int)StateType.Loading].Initialize((int)StateType.Loading);
         stateDic[(int)StateType.WaitInput] = gameObject.AddComponent<GameStateChild_WaitInput>();
         stateDic[(int)StateType.WaitInput].Initialize((int)StateType.WaitInput);
+        stateDic[(int)StateType.InMainMenu] = gameObject.AddComponent<GameStateChild_InMainMenu>();
+        stateDic[(int)StateType.InMainMenu].Initialize((int)StateType.InMainMenu);
         stateDic[(int)StateType.InNengu] = gameObject.AddComponent<GameStateChild_InNengu>();
         stateDic[(int)StateType.InNengu].Initialize((int)StateType.InNengu);
         stateDic[(int)StateType.InTahataHiritsu] = gameObject.AddComponent<GameStateChild_InTahataHiritsu>();
@@ -45,6 +50,8 @@ public class GameManager : AbstractStateController
         stateDic[(int)StateType.InShisatsu].Initialize((int)StateType.InShisatsu);
         stateDic[(int)StateType.InMatsuri] = gameObject.AddComponent<GameStateChild_InMatsuri>();
         stateDic[(int)StateType.InMatsuri].Initialize((int)StateType.InMatsuri);
+        stateDic[(int)StateType.InKyusai] = gameObject.AddComponent<GameStateChild_InKyusai>();
+        stateDic[(int)StateType.InKyusai].Initialize((int)StateType.InKyusai); 
         stateDic[(int)StateType.InPass] = gameObject.AddComponent<GameStateChild_InPass>();
         stateDic[(int)StateType.InPass].Initialize((int)StateType.InPass);
         stateDic[(int)StateType.Progress] = gameObject.AddComponent<GameStateChild_Progress>();
@@ -59,8 +66,13 @@ public class GameManager : AbstractStateController
     public bool OnNewGame = false;
     public bool OnLoadGame = false;
 
-    // 遷移条件が Panel/Button イベントの場合に使用
+    // 遷移条件が Button イベントの場合に使用
     public StateType StateByButton = StateType.WaitInput;
+
+    // Load Game 選択時の処理を登録
+    public Action LoadGameProc;
+
+    // 
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +87,8 @@ public class GameManager : AbstractStateController
         // ステートマシンの更新
         this.UpdateSequence();
     }
+
+    // イントロ画面のボタンのハンドラ
     public void OnNewGameButton()
     {
         OnNewGame = true;

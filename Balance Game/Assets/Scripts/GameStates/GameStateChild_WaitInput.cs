@@ -14,10 +14,12 @@ public class GameStateChild_WaitInput : AbstractStateChild
     }
     public override void OnEnter()
     {
-        // 施政メニューの選択を可能にする（城選択可能）
         Debug.Log($"[{this.name}] Enter WaitInput State!");
 
+        // ボタンイベント受信変数を初期化
         _gm.StateByButton = GameManager.StateType.WaitInput;
+
+        // 施政メニューの選択を可能にする（城選択可能）
         _oshiro.IsSelectable = true;
     }
     public override void OnExit()

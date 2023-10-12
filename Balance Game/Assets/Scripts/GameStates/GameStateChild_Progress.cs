@@ -1,34 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_Progress : AbstractStateChild
 {
     private GameManager _gm;
     private Oshiro _oshiro;
+    private Koyomi _koyomi;
+    private bool _isEventComplete;
     public override void Initialize(int stateType)
     {
         _gm = GetComponent<GameManager>();
+        _koyomi = GameObject.Find("Koyomi").GetComponent<Koyomi>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
         base.Initialize(stateType);
     }
     public override void OnEnter()
     {
-        //// 施政メニューの選択を可能にする（城選択可能）
-        Debug.Log($"[{this.name}] Enter Progress State!");
-        //_oshiro.IsSelectable = true;
+        // 翌月突入 
+        Debug.Log($"[{this.name}] Enter Progress State!(Next Month Start)");
+
+        // 暦の更新
+        _koyomi.GoNextMonth();
+        _isEventComplete = true;
     }
     public override void OnExit()
     {
-        //// 施政メニューの選択を不可にする（城選択不能）
-        //_oshiro.IsSelectable = false;
+        // None
     }
 
     public override int StateUpdate()
     {
-        //if (_gm.OnTurnEnd)
-        //{
-        //}
-        return (int)GameManager.StateType.WaitInput;
+        if (_isEventComplete)
+        {
+            _isEventComplete = false;
+            return (int)GameManager.StateType.WaitInput;
+        }
+        return (int)StateType;
     }
+
 }

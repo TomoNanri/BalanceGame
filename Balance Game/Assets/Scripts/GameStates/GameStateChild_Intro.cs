@@ -15,10 +15,13 @@ public class GameStateChild_Intro : AbstractStateChild
     public override void OnEnter()
     {
         Debug.Log($"[{this.name}] Enter Intro State!");
+
+        // イントロキャンバスの表示
         _introCanvas.SetActive(true);
     }
     public override void OnExit()
     {
+        // イントロキャンバスの消去
         _introCanvas.SetActive(false);
         _gm.OnLoadGame = false;
         _gm.OnNewGame = false;

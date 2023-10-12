@@ -6,29 +6,31 @@ public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
 {
     private GameManager _gm;
     private Oshiro _oshiro;
+    private GameObject _commandCanvas;
+
     public override void Initialize(int stateType)
     {
         _gm = GetComponent<GameManager>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
+        _commandCanvas = _oshiro.transform.Find("HatasakuGijutsuCanvas").gameObject;
+        _commandCanvas.SetActive(false);
         base.Initialize(stateType);
     }
     public override void OnEnter()
     {
-        // 施政メニューの選択を可能にする（城選択可能）
-        Debug.Log($"[{this.name}] Enter WaitInput State!");
-        _oshiro.IsSelectable = true;
+        // 救済キャンバスを表示する
+        Debug.Log($"[{this.name}] Enter InKyusai_State!");
+        _commandCanvas.SetActive(true);
     }
     public override void OnExit()
     {
-        // 施政メニューの選択を不可にする（城選択不能）
-        _oshiro.IsSelectable = false;
+        // 救済キャンバスを消去する
+        _commandCanvas.SetActive(false);
     }
 
     public override int StateUpdate()
     {
-        //if (_gm.OnTurnEnd)
-        //{
-        //}
-        return (int)GameManager.StateType.WaitInput;
+
+        return (int)_gm.StateByButton;
     }
 }

@@ -8,7 +8,7 @@ public class Oshiro : MonoBehaviour
     public bool IsSelectable { get; set; }
 
     private GameManager _gm;
-    private GameObject _menuCanvas;
+    private GameObject _mainMenuCanvas;
     private RaycastHit _hitObj;
 
     // Start is called before the first frame update
@@ -16,8 +16,8 @@ public class Oshiro : MonoBehaviour
     {
         _gm = GameObject.FindAnyObjectByType<GameManager>();
         IsSelectable = false;
-        _menuCanvas = transform.Find("MenuCanvas").gameObject;
-        _menuCanvas.SetActive(false);
+        _mainMenuCanvas = transform.Find("MainMenuCanvas").gameObject;
+        _mainMenuCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,54 +38,58 @@ public class Oshiro : MonoBehaviour
                 if (_hitObj.transform.tag == "Oshiro")
                 {
                     Debug.Log($"[{this.name}] Oshiro is selected!");
-                    _menuCanvas.SetActive(true);
+                    _gm.StateByButton = GameManager.StateType.InMainMenu;
                 }
             }
         }
     }
+    public void ShowMainMenu(bool isActivate)
+    {
+        _mainMenuCanvas.SetActive(isActivate);
+    }
     public void OnNenguButton()
     {
         _gm.StateByButton = GameManager.StateType.InNengu;
-        _menuCanvas.SetActive(false);
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnHiritsuButton()
     {
         _gm.StateByButton = GameManager.StateType.InTahataHiritsu;
-        _menuCanvas.SetActive(false);
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnSuidenGijutsuButtom()
     {
-        _menuCanvas.SetActive(false);
-
+        _gm.StateByButton = GameManager.StateType.InSuidenGijutsu;
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnHatakeGijutsuButton()
     {
-        _menuCanvas.SetActive(false);
-
+        _gm.StateByButton = GameManager.StateType.InHatasakuGijutsu;
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnNouguButtom()
     {
-        _menuCanvas.SetActive(false);
-
+        _gm.StateByButton = GameManager.StateType.InNouguKounyuu;
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnShisatsuButton()
     {
-        _menuCanvas.SetActive(false);
-
+        _gm.StateByButton = GameManager.StateType.InShisatsu;
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnMatsuriButton()
     {
-        _menuCanvas.SetActive(false);
-
+        _gm.StateByButton = GameManager.StateType.InMatsuri;
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnKyusaiButton()
     {
-        _menuCanvas.SetActive(false);
-
+        _gm.StateByButton = GameManager.StateType.InKyusai;
+        _mainMenuCanvas.SetActive(false);
     }
     public void OnPassButton()
     {
-        _menuCanvas.SetActive(false);
-
+        _gm.StateByButton = GameManager.StateType.InPass;
+        _mainMenuCanvas.SetActive(false);
     }
 }

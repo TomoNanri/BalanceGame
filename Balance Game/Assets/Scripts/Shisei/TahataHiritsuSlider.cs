@@ -33,8 +33,8 @@ public class TahataHiritsuSlider : MonoBehaviour
         _taText.SetText($"田{_newTaNoKazu}");
         _hatakeText.SetText($"畑{_newHatakeNoKazu}");
 
-        // 田畑比率変更イベントのハンドラ
-        transform.parent.GetComponent<TahataHiritsuPanel>().OkEvent += Execute;
+        // 田畑比率変更イベントのハンドラ登録
+        GameObject.Find("HiritsuCanvas").GetComponent<TahataHiritsuCanvas>().OkEvent += Execute;
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class TahataHiritsuSlider : MonoBehaviour
         _taText.SetText($"田{_newTaNoKazu}");
         _hatakeText.SetText($"畑{_nouchi.HatakeNoKazu}");
     }
-    public void Execute()
+    private void Execute()
     {
         _nouchi.TaNoKazu = _newTaNoKazu;
         _nouchi.HatakeNoKazu = _newHatakeNoKazu;
