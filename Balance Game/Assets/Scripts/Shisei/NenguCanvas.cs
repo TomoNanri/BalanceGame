@@ -5,6 +5,8 @@ using TMPro;
 
 public class NenguCanvas : MonoBehaviour
 {
+    public string OnButtonName => _onButtonName;
+    private string _onButtonName;
     private GameManager _gm;
     private TextMeshProUGUI _restrictionMSG;
     private TextMeshProUGUI _costText;
@@ -15,7 +17,6 @@ public class NenguCanvas : MonoBehaviour
         _gm = FindAnyObjectByType<GameManager>();
         _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
         _costText = transform.Find("Panel/CostText").GetComponent<TextMeshProUGUI>();
-        Debug.Log($"[{name}] MSG1={_restrictionMSG}, MSG2={_costText}");
     }
 
     // Update is called once per frame
@@ -23,16 +24,17 @@ public class NenguCanvas : MonoBehaviour
     {
 
     }
-    public void Activate(string msg)
+    public void Setup(string msg)
     {
+        _onButtonName = null;
         _costText.SetText(msg);
     }
     public void OnOkButton()
     {
-        _gm.StateByButton = GameManager.StateType.Progress;
+        _onButtonName = "Ok";
     }
     public void OnCancelButton()
     {
-        _gm.StateByButton = GameManager.StateType.InMainMenu;
+        _onButtonName = "Cancel";
     }
 }

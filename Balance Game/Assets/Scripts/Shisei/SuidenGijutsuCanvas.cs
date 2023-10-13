@@ -1,41 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using TMPro;
 
-public class TahataHiritsuPanel : MonoBehaviour
+public class SuidenGijutsuCanvas : MonoBehaviour
 {
-    public Action OkEvent;
     private GameManager _gm;
     private TextMeshProUGUI _restrictionMSG;
+    private TextMeshProUGUI _costText;
 
     // Start is called before the first frame update
     void Start()
     {
         _gm = FindAnyObjectByType<GameManager>();
-        _restrictionMSG = transform.Find("RestrictionText").GetComponent<TextMeshProUGUI>();
+        _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
+        _costText = transform.Find("Panel/CostText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Activate(string msg)
     {
-        _restrictionMSG.SetText(msg);
+        _costText.SetText(msg);
     }
     public void OnOkButton()
     {
-        if (OkEvent != null)
-        {
-            OkEvent.Invoke();
-        }
         _gm.StateByButton = GameManager.StateType.Progress;
     }
     public void OnCancelButton()
     {
-
+        _gm.StateByButton = GameManager.StateType.InMainMenu;
     }
 }

@@ -577,6 +577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7081240373acb6479b7df764263cc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Luck: 50
+  _guidePrefab: {fileID: 3723105728500285036, guid: 209877bf0e41a794dafc68541ddc1a7a, type: 3}
 --- !u!65 &7969523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -644,7 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0.6666667, g: 0.34901962, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -681,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &11306684
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +693,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 11306685}
-  - component: {fileID: 11306686}
   m_Layer: 0
   m_Name: BadgeList
   m_TagString: Untagged
@@ -714,26 +716,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11306686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11306684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a72d9867875ffd64cba505ed62e8966d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isActive100Man: 0
-  _isActive70Man: 0
-  _isActive50Man: 0
-  _isActive30Man: 0
-  _isActive20Man: 0
-  _isActive10Man: 0
-  _isActive5Man: 0
-  _isActive1Man: 0
 --- !u!1 &14766034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,8 +1310,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 2098911817}
+        m_TargetAssemblyTypeName: SuidenGijutsuCanvas, Assembly-CSharp
         m_MethodName: OnCancelButton
         m_Mode: 1
         m_Arguments:
@@ -1771,6 +1753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 77251193}
+  - component: {fileID: 77251194}
   m_Layer: 0
   m_Name: GodOfLuck
   m_TagString: Untagged
@@ -1793,6 +1776,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &77251194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77251192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32612b8e32601a742b8b7cc0a1c13ece, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &82302776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,7 +3455,7 @@ GameObject:
   - component: {fileID: 176948874}
   - component: {fileID: 176948873}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3595,7 +3590,7 @@ GameObject:
   - component: {fileID: 202511078}
   - component: {fileID: 202511077}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4090,8 +4085,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 2098911817}
+        m_TargetAssemblyTypeName: SuidenGijutsuCanvas, Assembly-CSharp
         m_MethodName: OnOkButton
         m_Mode: 1
         m_Arguments:
@@ -5139,7 +5134,7 @@ GameObject:
   - component: {fileID: 374055147}
   - component: {fileID: 374055146}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6074,7 +6069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0.79607844, g: 0.41568628, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -6111,6 +6106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &465821835
 GameObject:
   m_ObjectHideFlags: 0
@@ -6479,7 +6475,6 @@ MonoBehaviour:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
   - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
-  Noumin: {fileID: 0}
 --- !u!1 &490447109
 GameObject:
   m_ObjectHideFlags: 0
@@ -9004,7 +8999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0.19215688, g: 0.7058824, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -9041,6 +9036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &689770206
 GameObject:
   m_ObjectHideFlags: 0
@@ -9935,7 +9931,7 @@ GameObject:
   - component: {fileID: 784161320}
   - component: {fileID: 784161319}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11472,7 +11468,6 @@ MonoBehaviour:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
   - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
-  Noumin: {fileID: 0}
 --- !u!1 &887227624
 GameObject:
   m_ObjectHideFlags: 0
@@ -14096,7 +14091,7 @@ GameObject:
   - component: {fileID: 1120389116}
   - component: {fileID: 1120389115}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14231,7 +14226,7 @@ GameObject:
   - component: {fileID: 1123515119}
   - component: {fileID: 1123515118}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15521,7 +15516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0.56078434, g: 0.29411766, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -15558,6 +15553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &1213470352
 GameObject:
   m_ObjectHideFlags: 0
@@ -16695,7 +16691,6 @@ MonoBehaviour:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
   - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
-  Noumin: {fileID: 0}
 --- !u!1 &1353319405
 GameObject:
   m_ObjectHideFlags: 0
@@ -20202,7 +20197,7 @@ GameObject:
   - component: {fileID: 1657922214}
   - component: {fileID: 1657922213}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22234,7 +22229,7 @@ GameObject:
   - component: {fileID: 1830835818}
   - component: {fileID: 1830835817}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22491,7 +22486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0.2719624, g: 1, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -22528,6 +22523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &1848441398
 GameObject:
   m_ObjectHideFlags: 0
@@ -22991,7 +22987,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -23212,6 +23208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1875282163}
+  - component: {fileID: 1875282164}
   m_Layer: 0
   m_Name: Tokuten
   m_TagString: Untagged
@@ -23235,6 +23232,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1875282164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875282162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f719feb216e24934ca7d78ee6f006c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _kokudaka: 0
+  _kobanCount: 10000
 --- !u!1 &1896234244
 GameObject:
   m_ObjectHideFlags: 0
@@ -23607,7 +23618,6 @@ MonoBehaviour:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
   - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
-  Noumin: {fileID: 0}
 --- !u!1 &1910586851
 GameObject:
   m_ObjectHideFlags: 0
@@ -24701,7 +24711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0.227451, g: 0.83921576, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -24738,6 +24748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &1981953055
 GameObject:
   m_ObjectHideFlags: 0
@@ -25365,7 +25376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.9686275, b: 0.9921569, a: 0.49803922}
+  m_Color: {r: 1, g: 0.12156863, b: 0.19215687, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -25402,6 +25413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &2025895260
 GameObject:
   m_ObjectHideFlags: 0
@@ -25725,7 +25737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49803922}
+  m_Color: {r: 0.6666667, g: 0.34901962, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -25762,6 +25774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2c885c16b31a4d92ee73de6dc2f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _alphaLow: 0.7
 --- !u!1 &2037556352
 GameObject:
   m_ObjectHideFlags: 0
@@ -26152,6 +26165,7 @@ GameObject:
   - component: {fileID: 2098911816}
   - component: {fileID: 2098911815}
   - component: {fileID: 2098911814}
+  - component: {fileID: 2098911817}
   m_Layer: 5
   m_Name: SuidenGijutsuCanvas
   m_TagString: Untagged
@@ -26241,6 +26255,18 @@ Canvas:
   m_SortingLayerID: 483778211
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2098911817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098911812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4151e86968ef3b448a21e9d2977d3106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2115127735
 GameObject:
   m_ObjectHideFlags: 0

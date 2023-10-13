@@ -21,11 +21,15 @@ public class GameStateChild_WaitInput : AbstractStateChild
 
         // 施政メニューの選択を可能にする（城選択可能）
         _oshiro.IsSelectable = true;
+
+        // ガイドメッセージを表示
+        _oshiro.ShowGuide(true);
     }
     public override void OnExit()
     {
         // 施政メニューの選択を不可にする（城選択不能）
         _oshiro.IsSelectable = false;
+        _oshiro.ShowGuide(false);
     }
 
     public override int StateUpdate()

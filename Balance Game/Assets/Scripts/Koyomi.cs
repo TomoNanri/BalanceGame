@@ -6,6 +6,12 @@ using TMPro;
 public class Koyomi : MonoBehaviour
 {
     public bool IsNewMonth { get; set; }
+    public int Tsuki => _tsuki;
+    public int Nen => _nen;
+
+    private int _tsuki;
+    private int _nen;
+
     [SerializeField]
     SeasonStateController stateController = default;
     [SerializeField]
@@ -41,17 +47,18 @@ public class Koyomi : MonoBehaviour
     {
         IsNewMonth = false;
 
-        var nen = _tsukisuu / 12 + 1;
-        var tsuki = _tsukisuu % 12;
-        if (nen == 0)
+        _nen = _tsukisuu / 12 + 1;
+        _tsuki = _tsukisuu % 12;
+
+        if (_nen == 0)
         {
             _nengouText.SetText($"—ßZ Œ³”N");
         }
         else
         {
-            _nengouText.SetText($"—ßZ {nen}”N");
+            _nengouText.SetText($"—ßZ {_nen}”N");
         }
-        _tsukiText.SetText($"{_tsukimei[tsuki]}");
+        _tsukiText.SetText($"{_tsukimei[_tsuki]}");
     }
     public void GoNextMonth()
     {

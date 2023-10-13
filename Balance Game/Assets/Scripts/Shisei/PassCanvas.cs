@@ -5,6 +5,9 @@ using TMPro;
 
 public class PassCanvas : MonoBehaviour
 {
+    public string OnButtonName => _onButtonName;
+    private string _onButtonName;
+
     private GameManager _gm;
     private TextMeshProUGUI _restrictionMSG;
 
@@ -20,16 +23,17 @@ public class PassCanvas : MonoBehaviour
     {
 
     }
-    public void Activate(string msg)
+    public void Setup(string msg)
     {
+        _onButtonName = null;
     }
     public void OnOkButton()
     {
-        _gm.StateByButton = GameManager.StateType.Progress;
+        _onButtonName = "Ok";
     }
     public void OnCancelButton()
     {
-        _gm.StateByButton = GameManager.StateType.InMainMenu;
+        _onButtonName = "Cancel";
     }
 
 }

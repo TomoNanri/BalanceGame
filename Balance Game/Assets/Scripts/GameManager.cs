@@ -66,13 +66,12 @@ public class GameManager : AbstractStateController
     public bool OnNewGame = false;
     public bool OnLoadGame = false;
 
+
     // 遷移条件が Button イベントの場合に使用
     public StateType StateByButton = StateType.WaitInput;
 
     // Load Game 選択時の処理を登録
     public Action LoadGameProc;
-
-    // 
 
     // Start is called before the first frame update
     void Start()

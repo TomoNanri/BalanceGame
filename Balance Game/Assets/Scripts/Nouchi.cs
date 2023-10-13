@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Nouchi : MonoBehaviour
 {
     public GameObject Tanbo;
     public GameObject Hatake;
     public int NouchiMaxCount = 32;
+
     public int TaNoKazu;
     public int HatakeNoKazu;
 
@@ -15,11 +17,15 @@ public class Nouchi : MonoBehaviour
     [SerializeField]
     private Vector2[] _kukaku;
 
+    private Oshiro _oshiro;
+
     private bool _isUpdate = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        _oshiro = GameObject.FindAnyObjectByType<Oshiro>();
+
         // ‘º–¼Žæ“¾
         _muramei = transform.parent.name;
         Debug.Log($"[{this.name}]Muramei = {_muramei}");
@@ -56,11 +62,15 @@ public class Nouchi : MonoBehaviour
             {
                 var child = Instantiate(Tanbo, this.transform, false);
                 child.transform.position = _kukaku[c];
+                TextMeshProUGUI levelText =child.transform.Find("Canvas/LevelText").GetComponent<TextMeshProUGUI>();
+                levelText.SetText($"Lv{_oshiro.TaLevel}");
             }
             for (int c = TaNoKazu; c < NouchiMaxCount; c++)
             {
                 var child = Instantiate(Hatake, this.transform, false);
                 child.transform.position = _kukaku[c];
+                TextMeshProUGUI levelText = child.transform.Find("Canvas/LevelText").GetComponent<TextMeshProUGUI>();
+                levelText.SetText($"Lv{_oshiro.HatakeLevel}");
             }
         }
     }

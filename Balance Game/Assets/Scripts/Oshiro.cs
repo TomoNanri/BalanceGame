@@ -5,11 +5,21 @@ using System;
 
 public class Oshiro : MonoBehaviour
 {
+    public readonly int[] LevelList = { 200, 400, 600, 1000, 1600, 2600, 4200, 6800, 11000, 17800 }; 
     public bool IsSelectable { get; set; }
+    public int TaLevel => _taLevel;
+    public int HatakeLevel => _hatakeLevel;
+    public int Luck = 50;
+
+    private int _taLevel = 1;
+    private int _hatakeLevel = 1;
 
     private GameManager _gm;
     private GameObject _mainMenuCanvas;
     private RaycastHit _hitObj;
+    [SerializeField]
+    private GameObject _guidePrefab;
+    private GameObject _guideObject;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +52,18 @@ public class Oshiro : MonoBehaviour
                 }
             }
         }
+    }
+    public void ShowGuide(bool isActive)
+    {
+        if (_guideObject == null)
+        {
+            _guideObject = Instantiate(_guidePrefab, this.transform);
+            Vector2 pos = _guideObject.transform.position;
+            pos.x += 0.5f;
+            pos.y += 0.5f;
+            _guideObject.transform.position = pos;
+        }
+        _guideObject.SetActive(isActive);
     }
     public void ShowMainMenu(bool isActivate)
     {

@@ -18,7 +18,6 @@ public class TahataHiritsuSlider : MonoBehaviour
     void Start()
     {
         _muramei = this.name;
-        Debug.Log($"[{this.name}] Slider activate!");
         _nouchi = GameObject.Find($"{_muramei}/Nouchi").GetComponent<Nouchi>();
         _slider = transform.Find("Hiritsu_Slider").gameObject.GetComponent<Slider>();
 
