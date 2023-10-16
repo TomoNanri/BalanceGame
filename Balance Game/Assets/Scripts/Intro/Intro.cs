@@ -18,9 +18,6 @@ public class Intro : MonoBehaviour
     {
         
     }
-    private void OnEnable()
-    {
-    }
     public void OnChangeVolume()
     {
         _gm.SoundLevel = transform.Find("Panel/Volume/Slider").GetComponent<Slider>().value;

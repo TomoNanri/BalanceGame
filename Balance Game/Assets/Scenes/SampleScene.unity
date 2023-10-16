@@ -577,7 +577,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7081240373acb6479b7df764263cc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Luck: 50
+  LevelMax: 10
+  ShisatsuKouka: 1
+  MatsuriKouka: 9
+  KyusaiKouka: 3
   _guidePrefab: {fileID: 3723105728500285036, guid: 209877bf0e41a794dafc68541ddc1a7a, type: 3}
 --- !u!65 &7969523
 BoxCollider:
@@ -800,8 +803,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 1623790150}
+        m_TargetAssemblyTypeName: NouguKounyuuCanvaas, Assembly-CSharp
         m_MethodName: OnCancelButton
         m_Mode: 1
         m_Arguments:
@@ -862,6 +865,7 @@ GameObject:
   - component: {fileID: 24545931}
   - component: {fileID: 24545930}
   - component: {fileID: 24545929}
+  - component: {fileID: 24545932}
   m_Layer: 5
   m_Name: MatsuriCanvas
   m_TagString: Untagged
@@ -951,6 +955,18 @@ Canvas:
   m_SortingLayerID: 483778211
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &24545932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24545927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bf56bd1745eaa4da5491bce0147786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &31998446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,7 +2029,7 @@ GameObject:
   - component: {fileID: 102482843}
   - component: {fileID: 102482842}
   m_Layer: 5
-  m_Name: OkSouthButton
+  m_Name: GoSouthButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2084,9 +2100,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
-        m_MethodName: OnOkButton
+      - m_Target: {fileID: 1141285649}
+        m_TargetAssemblyTypeName: ShisatsuCanvas, Assembly-CSharp
+        m_MethodName: OnGoSouthButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2825,8 +2841,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 1623790150}
+        m_TargetAssemblyTypeName: NouguKounyuuCanvaas, Assembly-CSharp
         m_MethodName: OnOkButton
         m_Mode: 1
         m_Arguments:
@@ -3797,8 +3813,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnSuidenGijutsuButtom
         m_Mode: 1
         m_Arguments:
@@ -4283,7 +4299,7 @@ GameObject:
   - component: {fileID: 259079682}
   - component: {fileID: 259079681}
   m_Layer: 5
-  m_Name: OkEastButton
+  m_Name: GoEastButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4354,9 +4370,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
-        m_MethodName: OnOkButton
+      - m_Target: {fileID: 1141285649}
+        m_TargetAssemblyTypeName: ShisatsuCanvas, Assembly-CSharp
+        m_MethodName: OnGoEastButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5746,8 +5762,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnNenguButton
         m_Mode: 1
         m_Arguments:
@@ -6471,10 +6487,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Satisfaction: 0
+  _MaxSatisfaction: 99
+  _MinSatisfaction: 1
+  alpha: 0.0001
+  _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
+  - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
-  - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
 --- !u!1 &490447109
 GameObject:
   m_ObjectHideFlags: 0
@@ -7107,7 +7128,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 80}
+  m_SizeDelta: {x: 180, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &534030607
 MonoBehaviour:
@@ -8255,6 +8276,141 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623012761}
   m_CullTransparentMesh: 1
+--- !u!1 &635428637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 635428638}
+  - component: {fileID: 635428640}
+  - component: {fileID: 635428639}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &635428638
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635428637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1143310398}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &635428639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635428637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\u620C\u4EA5\u6751\u306B\u65BD\u3059"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
+  m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 8
+  m_fontSizeBase: 8
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &635428640
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635428637}
+  m_CullTransparentMesh: 1
 --- !u!1 &649037692
 GameObject:
   m_ObjectHideFlags: 0
@@ -8588,8 +8744,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnKyusaiButton
         m_Mode: 1
         m_Arguments:
@@ -9408,6 +9564,140 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708738277}
   m_CullTransparentMesh: 1
+--- !u!1 &723079251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 723079252}
+  - component: {fileID: 723079255}
+  - component: {fileID: 723079254}
+  - component: {fileID: 723079253}
+  m_Layer: 5
+  m_Name: OkButtonTatsumi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &723079252
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723079251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1676699633}
+  m_Father: {fileID: 2056588443}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -50, y: -40}
+  m_SizeDelta: {x: 60, y: 15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &723079253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723079251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 723079254}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 534030610}
+        m_TargetAssemblyTypeName: KyusaiCanvas, Assembly-CSharp
+        m_MethodName: OnOkTatsumi
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &723079254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723079251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &723079255
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723079251}
+  m_CullTransparentMesh: 1
 --- !u!1 &726468219
 GameObject:
   m_ObjectHideFlags: 0
@@ -9661,8 +9951,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 24545932}
+        m_TargetAssemblyTypeName: MatsuriCanvas, Assembly-CSharp
         m_MethodName: OnCancelButton
         m_Mode: 1
         m_Arguments:
@@ -10918,7 +11208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u306F\u3044"
+  m_text: "\u4E11\u5BC5\u6751\u306B\u65BD\u3059"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -11277,6 +11567,7 @@ GameObject:
   - component: {fileID: 882037610}
   - component: {fileID: 882037609}
   - component: {fileID: 882037608}
+  - component: {fileID: 882037611}
   m_Layer: 5
   m_Name: HatasakuGijutsuCanvas
   m_TagString: Untagged
@@ -11366,6 +11657,18 @@ Canvas:
   m_SortingLayerID: 483778211
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &882037611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882037606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edeb8966f5709cf4297dcb9a64dbe72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &883394342
 GameObject:
   m_ObjectHideFlags: 0
@@ -11464,10 +11767,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Satisfaction: 0
+  _MaxSatisfaction: 99
+  _MinSatisfaction: 1
+  alpha: 0.0001
+  _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
+  - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
-  - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
 --- !u!1 &887227624
 GameObject:
   m_ObjectHideFlags: 0
@@ -13601,8 +13909,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 882037611}
+        m_TargetAssemblyTypeName: HatasakuGijutsuCanvas, Assembly-CSharp
         m_MethodName: OnCancelButton
         m_Mode: 1
         m_Arguments:
@@ -13664,7 +13972,7 @@ GameObject:
   - component: {fileID: 1075990979}
   - component: {fileID: 1075990978}
   m_Layer: 5
-  m_Name: OkWestButton
+  m_Name: GoWestButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13735,9 +14043,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
-        m_MethodName: OnOkButton
+      - m_Target: {fileID: 1141285649}
+        m_TargetAssemblyTypeName: ShisatsuCanvas, Assembly-CSharp
+        m_MethodName: OnGoWestButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13798,7 +14106,7 @@ GameObject:
   - component: {fileID: 1093583303}
   - component: {fileID: 1093583302}
   m_Layer: 5
-  m_Name: OkNorthButton
+  m_Name: GoNorthButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13869,9 +14177,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
-        m_MethodName: OnOkButton
+      - m_Target: {fileID: 1141285649}
+        m_TargetAssemblyTypeName: ShisatsuCanvas, Assembly-CSharp
+        m_MethodName: OnGoNorthButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14517,6 +14825,7 @@ GameObject:
   - component: {fileID: 1141285648}
   - component: {fileID: 1141285647}
   - component: {fileID: 1141285646}
+  - component: {fileID: 1141285649}
   m_Layer: 5
   m_Name: ShisatsuCanvas
   m_TagString: Untagged
@@ -14606,6 +14915,152 @@ Canvas:
   m_SortingLayerID: 483778211
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1141285649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141285644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d7b6a3cc525c14fbfb4ebd5c08a9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1143310397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143310398}
+  - component: {fileID: 1143310401}
+  - component: {fileID: 1143310400}
+  - component: {fileID: 1143310399}
+  m_Layer: 5
+  m_Name: OkButtonInui
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1143310398
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143310397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 635428638}
+  m_Father: {fileID: 2056588443}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 15, y: -25}
+  m_SizeDelta: {x: 60, y: 15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1143310399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143310397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1143310400}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 534030610}
+        m_TargetAssemblyTypeName: KyusaiCanvas, Assembly-CSharp
+        m_MethodName: OnOkInui
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1143310400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143310397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1143310401
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143310397}
+  m_CullTransparentMesh: 1
 --- !u!1 &1163358152
 GameObject:
   m_ObjectHideFlags: 0
@@ -14905,8 +15360,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 24545932}
+        m_TargetAssemblyTypeName: MatsuriCanvas, Assembly-CSharp
         m_MethodName: OnOkButton
         m_Mode: 1
         m_Arguments:
@@ -14954,6 +15409,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169273577}
+  m_CullTransparentMesh: 1
+--- !u!1 &1173417908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173417909}
+  - component: {fileID: 1173417912}
+  - component: {fileID: 1173417911}
+  - component: {fileID: 1173417910}
+  m_Layer: 5
+  m_Name: OkButtonHitsujisaru
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1173417909
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173417908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1225334948}
+  m_Father: {fileID: 2056588443}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 15, y: -40}
+  m_SizeDelta: {x: 60, y: 15}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1173417910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173417908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1173417911}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 534030610}
+        m_TargetAssemblyTypeName: KyusaiCanvas, Assembly-CSharp
+        m_MethodName: OnOkHitsujisaru
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1173417911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173417908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1173417912
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173417908}
   m_CullTransparentMesh: 1
 --- !u!1 &1190508057
 GameObject:
@@ -15142,8 +15731,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnHiritsuButton
         m_Mode: 1
         m_Arguments:
@@ -15731,8 +16320,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnHatakeGijutsuButton
         m_Mode: 1
         m_Arguments:
@@ -15781,6 +16370,141 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218709136}
   m_CullTransparentMesh: 1
+--- !u!1 &1225334947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1225334948}
+  - component: {fileID: 1225334950}
+  - component: {fileID: 1225334949}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1225334948
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225334947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1173417909}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1225334949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225334947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\u672A\u7533\u6751\u306B\u65BD\u3059"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
+  m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 8
+  m_fontSizeBase: 8
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1225334950
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225334947}
+  m_CullTransparentMesh: 1
 --- !u!1 &1228653926
 GameObject:
   m_ObjectHideFlags: 0
@@ -15812,7 +16536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnNewGame: 0
   OnLoadGame: 0
-  StateByButton: 3
+  HoubiPrefab: {fileID: 5342212759588292758, guid: eaaf6dad252744d458d07d5d6dcc015c, type: 3}
 --- !u!4 &1228653928
 Transform:
   m_ObjectHideFlags: 0
@@ -16404,8 +17128,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 882037611}
+        m_TargetAssemblyTypeName: HatasakuGijutsuCanvas, Assembly-CSharp
         m_MethodName: OnOkButton
         m_Mode: 1
         m_Arguments:
@@ -16687,10 +17411,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Satisfaction: 0
+  _MaxSatisfaction: 99
+  _MinSatisfaction: 1
+  alpha: 0.0001
+  _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
+  - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
-  - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
 --- !u!1 &1353319405
 GameObject:
   m_ObjectHideFlags: 0
@@ -16775,8 +17504,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnPassButton
         m_Mode: 1
         m_Arguments:
@@ -17415,7 +18144,7 @@ GameObject:
   - component: {fileID: 1402394190}
   - component: {fileID: 1402394189}
   m_Layer: 5
-  m_Name: OkButton
+  m_Name: OkButtonUshitora
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17439,8 +18168,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -30}
-  m_SizeDelta: {x: 35, y: 15}
+  m_AnchoredPosition: {x: -50, y: -25}
+  m_SizeDelta: {x: 60, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1402394189
 MonoBehaviour:
@@ -17488,7 +18217,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 534030610}
         m_TargetAssemblyTypeName: KyusaiCanvas, Assembly-CSharp
-        m_MethodName: OnOkButton
+        m_MethodName: OnOkUshitora
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17608,7 +18337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 170, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1449760246
@@ -17953,6 +18682,7 @@ GameObject:
   - component: {fileID: 1522127273}
   - component: {fileID: 1522127272}
   - component: {fileID: 1522127271}
+  - component: {fileID: 1522127274}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -18042,6 +18772,18 @@ Canvas:
   m_SortingLayerID: -1899315857
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1522127274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522127269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452cdbaf215a71f4eab5a62439167f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1522364814
 GameObject:
   m_ObjectHideFlags: 0
@@ -18126,8 +18868,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnNouguButtom
         m_Mode: 1
         m_Arguments:
@@ -19754,6 +20496,7 @@ GameObject:
   - component: {fileID: 1623790149}
   - component: {fileID: 1623790148}
   - component: {fileID: 1623790147}
+  - component: {fileID: 1623790150}
   m_Layer: 5
   m_Name: NouguKounyuuCanvas
   m_TagString: Untagged
@@ -19843,6 +20586,18 @@ Canvas:
   m_SortingLayerID: 483778211
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1623790150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623790145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7acba2e0156414c9d1f7e23bb9f954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1635335589
 GameObject:
   m_ObjectHideFlags: 0
@@ -19878,7 +20633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 170, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1635335591
@@ -20319,6 +21074,141 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657922211}
+  m_CullTransparentMesh: 1
+--- !u!1 &1676699632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1676699633}
+  - component: {fileID: 1676699635}
+  - component: {fileID: 1676699634}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1676699633
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676699632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 723079252}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1676699634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676699632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\u8FB0\u5DF3\u6751\u306B\u65BD\u3059"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
+  m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 8
+  m_fontSizeBase: 8
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1676699635
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676699632}
   m_CullTransparentMesh: 1
 --- !u!1 &1682425523
 GameObject:
@@ -21511,11 +22401,11 @@ RectTransform:
   m_Children:
   - {fileID: 803558383}
   m_Father: {fileID: 2056588443}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70, y: -30}
+  m_AnchoredPosition: {x: 70, y: -40}
   m_SizeDelta: {x: 35, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774964123
@@ -23614,10 +24504,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Satisfaction: 0
+  _MaxSatisfaction: 99
+  _MinSatisfaction: 1
+  alpha: 0.0001
+  _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
+  - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
-  - {fileID: 1765861768809983850, guid: e19c3db1c5a40b44db6ee05643b04a4a, type: 3}
 --- !u!1 &1910586851
 GameObject:
   m_ObjectHideFlags: 0
@@ -24316,8 +25211,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnShisatsuButton
         m_Mode: 1
         m_Arguments:
@@ -25498,8 +26393,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7969522}
-        m_TargetAssemblyTypeName: Oshiro, Assembly-CSharp
+      - m_Target: {fileID: 1522127274}
+        m_TargetAssemblyTypeName: MainMenuCanvas, Assembly-CSharp
         m_MethodName: OnMatsuriButton
         m_Mode: 1
         m_Arguments:
@@ -25895,6 +26790,9 @@ RectTransform:
   - {fileID: 1635335590}
   - {fileID: 1449760245}
   - {fileID: 1402394188}
+  - {fileID: 1143310398}
+  - {fileID: 1173417909}
+  - {fileID: 723079252}
   - {fileID: 1774964122}
   m_Father: {fileID: 534030606}
   m_RootOrder: 0
@@ -26435,8 +27333,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TahataHiritsuPanel, Assembly-CSharp
+      - m_Target: {fileID: 1141285649}
+        m_TargetAssemblyTypeName: ShisatsuCanvas, Assembly-CSharp
         m_MethodName: OnCancelButton
         m_Mode: 1
         m_Arguments:

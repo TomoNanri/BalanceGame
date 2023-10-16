@@ -5,9 +5,12 @@ using UnityEngine;
 public class SeasonStateChild_December : AbstractStateChild
 {
     private Koyomi _koyomi;
+    private Oshiro _oshiro;
     public override void Initialize(int stateType)
     {
-        _koyomi = transform.parent.GetComponent<Koyomi>();
+        _koyomi = GameObject.FindAnyObjectByType<Koyomi>();
+        _oshiro = GameObject.FindAnyObjectByType<Oshiro>();
+
         base.Initialize(stateType);
     }
     public override void OnEnter()
@@ -17,7 +20,11 @@ public class SeasonStateChild_December : AbstractStateChild
     }
     public override void OnExit()
     {
-        //throw new System.NotImplementedException();
+        if (_koyomi.IsTaLevelUpOrdered)
+        {
+            _koyomi.IsTaLevelUpOrdered = false;
+            _oshiro.TaLevel += 1;
+        }
     }
     public override int StateUpdate()
     {

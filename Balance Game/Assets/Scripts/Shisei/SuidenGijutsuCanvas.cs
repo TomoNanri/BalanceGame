@@ -5,16 +5,18 @@ using TMPro;
 
 public class SuidenGijutsuCanvas : MonoBehaviour
 {
-    private GameManager _gm;
+    // メニューボタンのクリックイベントをステートマシンに通知する（Args は次のステート）
+    public delegate void OnButtonEventHandler(object sender, ButtonEventArgs args);
+    public event OnButtonEventHandler OnButton;
+
+    private GameObject _okButton;
     private TextMeshProUGUI _restrictionMSG;
     private TextMeshProUGUI _costText;
 
     // Start is called before the first frame update
     void Start()
     {
-        _gm = FindAnyObjectByType<GameManager>();
-        _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
-        _costText = transform.Find("Panel/CostText").GetComponent<TextMeshProUGUI>();
+
     }
 
     // Update is called once per frame
@@ -22,16 +24,35 @@ public class SuidenGijutsuCanvas : MonoBehaviour
     {
 
     }
-    public void Activate(string msg)
+    public void Setup(string msg, bool isShowOkButton)
     {
+        _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
+        _costText = transform.Find("Panel/CostText").GetComponent<TextMeshProUGUI>();
+        _okButton = transform.Find("Panel/OkButton").gameObject;
+
+        _okButton.SetActive(isShowOkButton);
         _costText.SetText(msg);
     }
     public void OnOkButton()
     {
-        _gm.StateByButton = GameManager.StateType.Progress;
+        if (OnButton != null)
+        {
+            OnButton(this, new ButtonEventArgs("Ok"));
+        }
+        else
+        {
+            Debug.LogError($"[{name}] OnButton is null!");
+        }
     }
     public void OnCancelButton()
     {
-        _gm.StateByButton = GameManager.StateType.InMainMenu;
+        if (OnButton != null)
+        {
+            OnButton(this, new ButtonEventArgs("Cancel"));
+        }
+        else
+        {
+            Debug.LogError($"[{name}] OnButton is null!");
+        }
     }
 }

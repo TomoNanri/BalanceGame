@@ -29,8 +29,8 @@ public class GameStateChild_InNengu : AbstractStateChild
         Debug.Log($"[{this.name}] Enter InNengu_State!");
 
         // コマンドキャンバスを表示する
-        _nenguCanvas.Setup("");
         _commandCanvas.SetActive(true);
+        _nenguCanvas.Setup("");
     }
     public override void OnExit()
     {

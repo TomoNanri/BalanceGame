@@ -6,15 +6,19 @@ using TMPro;
 
 public class TahataHiritsuCanvas : MonoBehaviour
 {
+    // 比率変更決定のイベントを各村のスライダーに通知する
     public Action OkEvent;
-    private GameManager _gm;
+
+    // メニューボタンのクリックイベントをステートマシンに通知する（Args は次のステート）
+    public delegate void OnButtonEventHandler(object sender, ButtonEventArgs args);
+    public event OnButtonEventHandler OnButton;
+
     private TextMeshProUGUI _restrictionMSG;
 
     // Start is called before the first frame update
     void Start()
     {
-        _gm = FindAnyObjectByType<GameManager>();
-        _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
+
     }
 
     // Update is called once per frame
@@ -22,8 +26,9 @@ public class TahataHiritsuCanvas : MonoBehaviour
     {
         
     }
-    public void Activate(string msg)
+    public void Setup(string msg)
     {
+        _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
         _restrictionMSG.SetText(msg);
     }
     public void OnOkButton()
@@ -32,10 +37,25 @@ public class TahataHiritsuCanvas : MonoBehaviour
         {
             OkEvent.Invoke();
         }
-        _gm.StateByButton = GameManager.StateType.Progress;
+
+        if (OnButton != null)
+        {
+            OnButton(this, new ButtonEventArgs("Ok"));
+        }
+        else
+        {
+            Debug.LogError($"[{name}] OnButton is null!");
+        }
     }
     public void OnCancelButton()
     {
-        _gm.StateByButton = GameManager.StateType.InMainMenu;
+        if (OnButton != null)
+        {
+            OnButton(this, new ButtonEventArgs("Cancel"));
+        }
+        else
+        {
+            Debug.LogError($"[{name}] OnButton is null!");
+        }
     }
 }

@@ -1,15 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameStateChild_Intro : AbstractStateChild
 {
+    private const float _eventShowTime = 3.0f;
+
     private GameManager _gm;
     private GameObject _introCanvas;
+    private Tokuten _tokuten;
+    private Oshiro _oshiro;
+    private GodOfLuck _kami;
+    private bool _needOpeningEvent;
+
     public override void Initialize(int stateType)
     {
         _gm = GetComponent<GameManager>();
         _introCanvas = GameObject.Find("IntroCanvas");
+        _tokuten = GameObject.FindAnyObjectByType<Tokuten>();
+        _oshiro = GameObject.FindAnyObjectByType<Oshiro>();
+        _kami = GameObject.FindAnyObjectByType<GodOfLuck>();
+
         base.Initialize(stateType);
     }
     public override void OnEnter()
@@ -18,13 +32,30 @@ public class GameStateChild_Intro : AbstractStateChild
 
         // イントロキャンバスの表示
         _introCanvas.SetActive(true);
+        _needOpeningEvent = false;
     }
     public override void OnExit()
     {
+        if (_needOpeningEvent)
+        {
+            // 新規ゲームの処理
+
+            _needOpeningEvent = false;
+            StartCoroutine(OpeningEvent(_eventShowTime));
+
+            _oshiro.Luck = _kami.GetDiceD6(4) * 4;
+            if (_introCanvas.transform.Find("Panel/LevelSelect/ToggleEasy").GetComponent<Toggle>().isOn)
+            {
+                _oshiro.Luck = Math.Min(96, _oshiro.Luck + 30);
+            }
+            if (_introCanvas.transform.Find("Panel/LevelSelect/ToggleHard").GetComponent<Toggle>().isOn)
+            {
+                _oshiro.Luck = Math.Max(16, _oshiro.Luck - 40);
+            }
+            Debug.Log($"*** Luck = {_oshiro.Luck}");
+        }
         // イントロキャンバスの消去
         _introCanvas.SetActive(false);
-        _gm.OnLoadGame = false;
-        _gm.OnNewGame = false;
     }
 
     public override int StateUpdate()
@@ -32,6 +63,7 @@ public class GameStateChild_Intro : AbstractStateChild
         if (_gm.OnNewGame)
         {
             _gm.OnNewGame = false;
+            _needOpeningEvent = true;
             return (int)GameManager.StateType.WaitInput;
         }
         if (_gm.OnLoadGame)
@@ -40,5 +72,18 @@ public class GameStateChild_Intro : AbstractStateChild
             return (int)GameManager.StateType.Loading;
         }
         return (int)StateType;
+    }
+    IEnumerator OpeningEvent(float sec)
+    {
+        yield return new WaitForEndOfFrame();
+        var _houbiPanel = Instantiate(_gm.HoubiPrefab, Vector3.zero, Quaternion.identity);
+        var _text = _houbiPanel.transform.Find("Canvas/Panel/Text").gameObject.GetComponent<TextMeshProUGUI>();
+        _text.SetText($"大名に取り立てるぞ\n\n祝儀の小判を与える\n百万石大名を目指すのじゃ");
+
+
+        yield return new WaitForSeconds(sec);
+        _tokuten.UpdateKokudaka(10000);
+        _tokuten.AddKoban(10000);
+        Destroy(_houbiPanel);
     }
 }

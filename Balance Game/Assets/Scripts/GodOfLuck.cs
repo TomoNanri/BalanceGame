@@ -15,11 +15,11 @@ public class GodOfLuck : MonoBehaviour
     {
         
     }
-    public bool DiceCheck(int Limit, int count)
+    public bool DiceCheckD100(int Limit, int count)
     {
         for(int i = 0; i < count; i++)
         {
-            int ret = Random.Range((int)1, (int)101);
+            int ret = Random.Range(1, 101);
             if(ret <= Limit)
             {
                 Debug.Log($"[{name}] Dice{i + 1} Limit = {Limit}, ret = {ret} : Success!");
@@ -31,5 +31,16 @@ public class GodOfLuck : MonoBehaviour
             }
         }
         return false;
+    }
+    public int GetDiceD6(int count)
+    {
+        int result = 0;
+        for(int i = 0; i < count; i++)
+        {
+            int ret = Random.Range(1, 7);
+            result += ret;
+            Debug.Log($"[{name}] Dice{i + 1} ret = {ret} : result = {result}");
+        }
+        return result;
     }
 }

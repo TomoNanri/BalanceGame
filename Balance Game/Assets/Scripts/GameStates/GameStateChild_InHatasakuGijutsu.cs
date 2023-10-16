@@ -4,33 +4,91 @@ using UnityEngine;
 
 public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
 {
-    private GameManager _gm;
     private Oshiro _oshiro;
     private GameObject _commandCanvas;
+    private HatasakuGijutsuCanvas _hatasakugijutsu;
+
+    private bool _isButtonEventOn;
+    private string _buttonName;
+
+    private Tokuten _tokutenPanel;
+    private Koyomi _koyomi;
+    private int _cost;
+
 
     public override void Initialize(int stateType)
     {
-        _gm = GetComponent<GameManager>();
+        //_gm = GetComponent<GameManager>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
         _commandCanvas = _oshiro.transform.Find("HatasakuGijutsuCanvas").gameObject;
+        _hatasakugijutsu = _commandCanvas.GetComponent<HatasakuGijutsuCanvas>();
+        _hatasakugijutsu.OnButton += ButtonEventHandler;
+
+        _tokutenPanel = GameObject.FindAnyObjectByType<Tokuten>();
+        _koyomi = GameObject.FindAnyObjectByType<Koyomi>();
+
         _commandCanvas.SetActive(false);
+
         base.Initialize(stateType);
     }
     public override void OnEnter()
     {
-        // 救済キャンバスを表示する
-        Debug.Log($"[{this.name}] Enter InKyusai_State!");
+        // 畑作技術開発キャンバスを表示する
+        Debug.Log($"[{this.name}] Enter InHatasakuGijutsu_State!");
         _commandCanvas.SetActive(true);
+        _isButtonEventOn = false;
+
+        if (_oshiro.HatakeLevel <= _oshiro.LevelMax)
+        {
+                _cost = _oshiro.LevelList[_oshiro.TaLevel] * 64;
+                if (_tokutenPanel.KobanCount >= _cost)
+                {
+                    _hatasakugijutsu.Setup($"{_cost} の小判を消費します。", true);
+                }
+                else
+                {
+                    _hatasakugijutsu.Setup($"{_cost} の小判が必要です。\n小判が足りません。", false);
+                }
+        }
+        else
+        {
+            _hatasakugijutsu.Setup($"これ以上のレベル上げはできません。", false);
+        }
     }
     public override void OnExit()
     {
-        // 救済キャンバスを消去する
+        // 畑作技術開発キャンバスを消去する
         _commandCanvas.SetActive(false);
     }
 
     public override int StateUpdate()
     {
+        if (_isButtonEventOn)
+        {
+            switch (_buttonName)
+            {
+                case "Ok":
+                    // 小判を消費する
+                    _tokutenPanel.UseKoban(_cost);
 
-        return (int)_gm.StateByButton;
+                    // レベル上げを行う
+                    _oshiro.HatakeLevel++;
+
+                    return (int)GameManager.StateType.Progress;
+
+                case "Cancel":
+                    return (int)GameManager.StateType.InMainMenu;
+
+                default:
+                    Debug.LogError($"[{name}] Undefind button found.");
+                    return (int)StateType;
+            }
+        }
+        return (int)StateType;
+    }
+    private void ButtonEventHandler(object sender, ButtonEventArgs args)
+    {
+        _isButtonEventOn = true;
+        _buttonName = args.ButtonName;
     }
 }

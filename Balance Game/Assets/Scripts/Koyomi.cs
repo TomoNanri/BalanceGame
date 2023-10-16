@@ -6,6 +6,10 @@ using TMPro;
 public class Koyomi : MonoBehaviour
 {
     public bool IsNewMonth { get; set; }
+    public bool IsTaLevelUpOrdered { get; set; }
+    public bool IsHatakeLevelUpOrdered { get; set; }
+    public bool IsMatsuriDone { get; set; }
+
     public int Tsuki => _tsuki;
     public int Nen => _nen;
 
@@ -68,5 +72,9 @@ public class Koyomi : MonoBehaviour
     public void LoadGame()
     {
 
+    }
+    public void PurchaseNougu()
+    {
+        Debug.LogError("”_‹ïw“ü‚Í–¢À‘•I");
     }
 }

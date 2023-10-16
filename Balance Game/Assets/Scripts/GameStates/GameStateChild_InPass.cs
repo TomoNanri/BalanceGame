@@ -45,7 +45,7 @@ public class GameStateChild_InPass : AbstractStateChild
             {
                 case "Ok":
                     // çKâ^1d100 ê¨å˜Ç≈ÇÃçKâ^ílÇÇPè„è∏
-                    if (_godOfDice.DiceCheck(_oshiro.Luck, 1))
+                    if (_godOfDice.DiceCheckD100(_oshiro.Luck, 1))
                         if (_oshiro.Luck < 96)
                             _oshiro.Luck++;
 

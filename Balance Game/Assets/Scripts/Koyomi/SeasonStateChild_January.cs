@@ -14,6 +14,7 @@ public class SeasonStateChild_January : AbstractStateChild
     {
         Debug.Log($"[{this.name}] Enter ** {StateType} **");
         _koyomi.ShowKoyomi();
+        _koyomi.IsMatsuriDone = false;
     }
     public override void OnExit()
     {

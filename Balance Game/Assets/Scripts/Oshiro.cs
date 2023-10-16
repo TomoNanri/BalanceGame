@@ -5,14 +5,21 @@ using System;
 
 public class Oshiro : MonoBehaviour
 {
-    public readonly int[] LevelList = { 200, 400, 600, 1000, 1600, 2600, 4200, 6800, 11000, 17800 }; 
-    public bool IsSelectable { get; set; }
-    public int TaLevel => _taLevel;
-    public int HatakeLevel => _hatakeLevel;
-    public int Luck = 50;
+    // お城がクリックされた Event を GameState ステートマシン へ通知する
+    public delegate void OshiroSelectedEventHandler(object sender, EventArgs args);
+    public event OshiroSelectedEventHandler OshiroSelected;
 
-    private int _taLevel = 1;
-    private int _hatakeLevel = 1;
+    public readonly int[] LevelList = { 200, 400, 600, 1000, 1600, 2600, 4200, 6800, 11000, 17800 };
+    public int LevelMax = 10;
+    public bool IsSelectable { get; set; }
+    public int TaLevel { get; set; } = 1;
+    public int HatakeLevel { get; set; } = 1;
+    public int Luck { get; set; } = 50;
+
+    // Satisfaction に与える施策の効果値
+    public int ShisatsuKouka = 1;
+    public int MatsuriKouka = 9;
+    public int KyusaiKouka = 3;
 
     private GameManager _gm;
     private GameObject _mainMenuCanvas;
@@ -26,8 +33,6 @@ public class Oshiro : MonoBehaviour
     {
         _gm = GameObject.FindAnyObjectByType<GameManager>();
         IsSelectable = false;
-        _mainMenuCanvas = transform.Find("MainMenuCanvas").gameObject;
-        _mainMenuCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,7 +53,10 @@ public class Oshiro : MonoBehaviour
                 if (_hitObj.transform.tag == "Oshiro")
                 {
                     Debug.Log($"[{this.name}] Oshiro is selected!");
-                    _gm.StateByButton = GameManager.StateType.InMainMenu;
+                    if (OshiroSelected != null)
+                    {
+                        OshiroSelected(this, EventArgs.Empty);
+                    }
                 }
             }
         }
@@ -64,54 +72,5 @@ public class Oshiro : MonoBehaviour
             _guideObject.transform.position = pos;
         }
         _guideObject.SetActive(isActive);
-    }
-    public void ShowMainMenu(bool isActivate)
-    {
-        _mainMenuCanvas.SetActive(isActivate);
-    }
-    public void OnNenguButton()
-    {
-        _gm.StateByButton = GameManager.StateType.InNengu;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnHiritsuButton()
-    {
-        _gm.StateByButton = GameManager.StateType.InTahataHiritsu;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnSuidenGijutsuButtom()
-    {
-        _gm.StateByButton = GameManager.StateType.InSuidenGijutsu;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnHatakeGijutsuButton()
-    {
-        _gm.StateByButton = GameManager.StateType.InHatasakuGijutsu;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnNouguButtom()
-    {
-        _gm.StateByButton = GameManager.StateType.InNouguKounyuu;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnShisatsuButton()
-    {
-        _gm.StateByButton = GameManager.StateType.InShisatsu;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnMatsuriButton()
-    {
-        _gm.StateByButton = GameManager.StateType.InMatsuri;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnKyusaiButton()
-    {
-        _gm.StateByButton = GameManager.StateType.InKyusai;
-        _mainMenuCanvas.SetActive(false);
-    }
-    public void OnPassButton()
-    {
-        _gm.StateByButton = GameManager.StateType.InPass;
-        _mainMenuCanvas.SetActive(false);
     }
 }

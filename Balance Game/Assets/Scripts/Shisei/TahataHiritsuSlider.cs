@@ -46,7 +46,7 @@ public class TahataHiritsuSlider : MonoBehaviour
         _newHatakeNoKazu = (int)(_slider.value * 32f);
         _newTaNoKazu = _nouchi.NouchiMaxCount - _newHatakeNoKazu;
         _taText.SetText($"“c{_newTaNoKazu}");
-        _hatakeText.SetText($"”¨{_nouchi.HatakeNoKazu}");
+        _hatakeText.SetText($"”¨{_newHatakeNoKazu}");
     }
     private void Execute()
     {
