@@ -9,6 +9,7 @@ public class NenguCanvas : MonoBehaviour
     private string _onButtonName;
     private TextMeshProUGUI _restrictionMSG;
     private TextMeshProUGUI _costText;
+    private GameObject _okButton;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,18 @@ public class NenguCanvas : MonoBehaviour
     {
         _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
         _costText = transform.Find("Panel/CostText").GetComponent<TextMeshProUGUI>();
+        var isNenguAvailable = GameObject.Find("Koyomi").GetComponent<Koyomi>().IsNenguAvailable;
+        Debug.Log($"[{name}] isNenguAvailable = {isNenguAvailable}");
+        _okButton = transform.Find("Panel/OkButton").gameObject;
 
+        if (isNenguAvailable)
+        {
+            _okButton.SetActive(true);
+        }
+        else
+        {
+            _okButton.SetActive(false);
+        }
         _onButtonName = null;
         _costText.SetText(msg);
     }
