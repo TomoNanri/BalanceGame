@@ -24,13 +24,23 @@ public class Oshiro : MonoBehaviour
     private GameManager _gm;
     private GameObject _mainMenuCanvas;
     private RaycastHit _hitObj;
+
+    public List<Mura> MuraList = new List<Mura>();
+
     [SerializeField]
-    private GameObject _guidePrefab;
-    private GameObject _guideObject;
+    private GameObject _guideOtonosamaPrefab;
+    [SerializeField]
+    private GameObject _seppukuOtonosamaPrefab;
+
+    private GameObject _otonosama;
 
     // Start is called before the first frame update
     void Start()
     {
+        MuraList.Add(GameObject.Find("UshitoraMura").GetComponent<Mura>());
+        MuraList.Add(GameObject.Find("InuiMura").GetComponent<Mura>());
+        MuraList.Add(GameObject.Find("HitsujisaruMura").GetComponent<Mura>());
+        MuraList.Add(GameObject.Find("TatsumiMura").GetComponent<Mura>());
         _gm = GameObject.FindAnyObjectByType<GameManager>();
         IsSelectable = false;
     }
@@ -61,16 +71,16 @@ public class Oshiro : MonoBehaviour
             }
         }
     }
-    public void ShowGuide(bool isActive)
+    public void ShowOtonosama(bool isActive)
     {
-        if (_guideObject == null)
+        if (_otonosama == null)
         {
-            _guideObject = Instantiate(_guidePrefab, this.transform);
-            Vector2 pos = _guideObject.transform.position;
+            _otonosama = Instantiate(_guideOtonosamaPrefab, this.transform);
+            Vector2 pos = _otonosama.transform.position;
             pos.x += 0.5f;
             pos.y += 0.5f;
-            _guideObject.transform.position = pos;
+            _otonosama.transform.position = pos;
         }
-        _guideObject.SetActive(isActive);
+        _otonosama.SetActive(isActive);
     }
 }

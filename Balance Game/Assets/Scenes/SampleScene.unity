@@ -581,7 +581,9 @@ MonoBehaviour:
   ShisatsuKouka: 1
   MatsuriKouka: 9
   KyusaiKouka: 3
-  _guidePrefab: {fileID: 3723105728500285036, guid: 209877bf0e41a794dafc68541ddc1a7a, type: 3}
+  MuraList: []
+  _guideOtonosamaPrefab: {fileID: 3723105728500285036, guid: 209877bf0e41a794dafc68541ddc1a7a, type: 3}
+  _seppukuOtonosamaPrefab: {fileID: 4883745954123234688, guid: 73aebc60d8fde7b4f86f74d5a37c85c8, type: 3}
 --- !u!65 &7969523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1939,7 +1941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3044\u3044\u3048"
+  m_text: "\u3082\u3069\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -5061,7 +5063,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3044\u3044\u3048"
+  m_text: "\u3082\u3069\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -6487,15 +6489,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Satisfaction: 0
+  _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  alpha: 0.0001
+  _satisfactionUpMatsuri: 8
+  _satisfactionUpKyusai: 3
+  alpha: 0.4
   _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
+  - {fileID: 1293669399824503669, guid: 30f96cc6f719dc64fbee21f51ba7dcbd, type: 3}
 --- !u!1 &490447109
 GameObject:
   m_ObjectHideFlags: 0
@@ -10537,7 +10542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3044\u3044\u3048"
+  m_text: "\u3082\u3069\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -11767,15 +11772,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Satisfaction: 0
+  _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  alpha: 0.0001
+  _satisfactionUpMatsuri: 8
+  _satisfactionUpKyusai: 3
+  alpha: 0.2
   _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
+  - {fileID: 1293669399824503669, guid: 30f96cc6f719dc64fbee21f51ba7dcbd, type: 3}
 --- !u!1 &887227624
 GameObject:
   m_ObjectHideFlags: 0
@@ -13748,7 +13756,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3044\u3044\u3048"
+  m_text: "\u3082\u3069\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -15974,7 +15982,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3044\u3044\u3048"
+  m_text: "\u3082\u3069\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -17411,15 +17419,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Satisfaction: 0
+  _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  alpha: 0.0001
+  _satisfactionUpMatsuri: 8
+  _satisfactionUpKyusai: 3
+  alpha: 0.2
   _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
+  - {fileID: 1293669399824503669, guid: 30f96cc6f719dc64fbee21f51ba7dcbd, type: 3}
 --- !u!1 &1353319405
 GameObject:
   m_ObjectHideFlags: 0
@@ -18054,7 +18065,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3044\u3044\u3048"
+  m_text: "\u3082\u3069\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -24504,15 +24515,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba30f28f1870b54fae4d924f2345011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Satisfaction: 0
+  _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  alpha: 0.0001
+  _satisfactionUpMatsuri: 8
+  _satisfactionUpKyusai: 3
+  alpha: 0.4
   _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
   - {fileID: 5924013251357905498, guid: b6650eab84a0c1045abda63cdc31cc98, type: 3}
   - {fileID: 8142421120101938078, guid: b00f7e5286ddbd542af904ee54ad95be, type: 3}
+  - {fileID: 1293669399824503669, guid: 30f96cc6f719dc64fbee21f51ba7dcbd, type: 3}
 --- !u!1 &1910586851
 GameObject:
   m_ObjectHideFlags: 0
@@ -25050,7 +25064,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3044\u3044\u3048"
+  m_text: "\u3082\u3069\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}

@@ -6,9 +6,7 @@ public class Noumin : MonoBehaviour
 {
     [SerializeField]
     private float _velocity = 0.5f;
-    [SerializeField]
     private Vector3 _startPoint;
-    [SerializeField]
     private Vector3 _endPoint;
     private Vector3 _targetPosition;
     private GameObject _mura; 
@@ -19,10 +17,32 @@ public class Noumin : MonoBehaviour
         _mura = transform.parent.gameObject;
         var width = _mura.GetComponent<SpriteRenderer>().bounds.size.x;
         var position = _mura.transform.position;
+
         _startPoint = new Vector3(position.x - width / 3, position.y, position.z);
         _endPoint = new Vector3(position.x + width / 3, position.y, position.z);
-        transform.position = _startPoint;
-        _targetPosition = _endPoint;
+        int randomValue = Random.Range(0, 5);
+        switch (randomValue)
+        {
+            case 0:
+                transform.position = _startPoint;
+                _targetPosition = _endPoint;
+                break;
+
+            case 1:
+                transform.position = _endPoint;
+                _targetPosition = _startPoint;
+                break;
+
+            case 2:
+                transform.position = position;
+                _targetPosition = _endPoint;
+                break;
+
+            default:
+                transform.position = position;
+                _targetPosition = _startPoint;
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -31,12 +51,10 @@ public class Noumin : MonoBehaviour
         if(transform.position == _startPoint)
         {
             _targetPosition = _endPoint;
-            //transform.LookAt(_targetPosition);
         }
         else if(transform.position == _endPoint)
         {
             _targetPosition = _startPoint;
-            //transform.LookAt(_targetPosition);
         }
         float step = _velocity * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, step);
