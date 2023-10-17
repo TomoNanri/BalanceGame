@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameStateChild_InMatsuri : AbstractStateChild
 {
-    private GameManager _gm;
     private Oshiro _oshiro;
     private GameObject _commandCanvas;
     private MatsuriCanvas _matsuriCanvas;
@@ -12,13 +11,13 @@ public class GameStateChild_InMatsuri : AbstractStateChild
     private bool _isButtonEventOn;
     private string _buttonName;
 
+
     private Tokuten _tokutenPanel;
     private Koyomi _koyomi;
     private int _cost;
 
     public override void Initialize(int stateType)
     {
-        _gm = GetComponent<GameManager>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
         _commandCanvas = _oshiro.transform.Find("MatsuriCanvas").gameObject;
         _matsuriCanvas = _commandCanvas.GetComponent<MatsuriCanvas>();
@@ -36,7 +35,7 @@ public class GameStateChild_InMatsuri : AbstractStateChild
         _cost = _tokutenPanel.Kokudaka * 15 / 100;
 
         // コマンドキャンバスを表示する
-        Debug.Log($"[{this.name}] Enter InKyusai_State!");
+        Debug.Log($"[{this.name}] Enter InMatsuri State!");
         _isButtonEventOn = false;
         _commandCanvas.SetActive(true);
 
@@ -71,7 +70,12 @@ public class GameStateChild_InMatsuri : AbstractStateChild
                     _tokutenPanel.UseKoban(_cost);
 
                     // 祭モーションを開始する
-                    Debug.Log($"[{name}] 祭開催中");
+                    foreach(Mura e in _oshiro.MuraList)
+                    {
+                        e.StartMatsuri();
+                    }
+
+                    //Debug.Log($"[{name}] 祭開催中");
                     _koyomi.IsMatsuriDone = true;
 
                     return (int)GameManager.StateType.Progress;

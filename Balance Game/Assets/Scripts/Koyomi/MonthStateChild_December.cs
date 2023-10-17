@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonthStateChild_December : MonthStateChild
+public class MonthStateChild_December : AbstractMonthStateChild
 {
     private Oshiro _oshiro;
     public override void Initialize(int stateType)

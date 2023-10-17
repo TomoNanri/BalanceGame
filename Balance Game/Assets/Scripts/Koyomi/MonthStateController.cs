@@ -63,7 +63,7 @@ public class MonthStateController : AbstractStateController
     }
     public void AddCalendarEvent(int tsuki, Action action)
     {
-        var element = (MonthStateChild)stateDic[tsuki];
+        var element = (AbstractMonthStateChild)stateDic[tsuki];
         element.AddSingleShotEventOnEnter(action);
     }
 }

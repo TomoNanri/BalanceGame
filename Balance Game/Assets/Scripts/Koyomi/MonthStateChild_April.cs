@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonthStateChild_April : MonthStateChild
+public class MonthStateChild_April : AbstractMonthStateChild
 {
     public override void OnEnter()
     {

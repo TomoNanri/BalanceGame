@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonthStateChild_May : MonthStateChild
+public class MonthStateChild_May : AbstractMonthStateChild
 {
     public override int StateUpdate()
     {

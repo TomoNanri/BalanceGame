@@ -38,6 +38,7 @@ public class GameStateChild_InNouguKounyuu : AbstractStateChild
         // ”_‹ïw“üƒLƒƒƒ“ƒoƒX‚ð•\Ž¦‚·‚é
         Debug.Log($"[{this.name}] Enter InKyusai_State!");
         _commandCanvas.SetActive(true);
+        _isButtonEventOn = false;
 
         if (_tokutenPanel.KobanCount >= _cost)
         {

@@ -24,13 +24,13 @@ public class GameStateChild_WaitInput : AbstractStateChild
         _isOshiroSelected = false;
 
         // ガイドメッセージを表示
-        _oshiro.ShowGuide(true);
+        _oshiro.ShowOtonosama(true);
     }
     public override void OnExit()
     {
         // お城のクリックを不可にする
         _oshiro.IsSelectable = false;
-        _oshiro.ShowGuide(false);
+        _oshiro.ShowOtonosama(false);
     }
     public override int StateUpdate()
     {
