@@ -2,29 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeasonStateChild_January : AbstractStateChild
+public class MonthStateChild_October : MonthStateChild
 {
-    private Koyomi _koyomi;
-    public override void Initialize(int stateType)
-    {
-        _koyomi = transform.parent.GetComponent<Koyomi>();
-        base.Initialize(stateType);
-    }
     public override void OnEnter()
     {
-        Debug.Log($"[{this.name}] Enter ** {StateType} **");
         _koyomi.ShowKoyomi();
+        _koyomi.IsNenguAvailable = true;
         _koyomi.IsMatsuriDone = false;
+        base.OnEnter();
     }
     public override void OnExit()
     {
-
+        _koyomi.IsNenguAvailable = false;
+        base.OnExit();
     }
     public override int StateUpdate()
     {
         if (_koyomi.IsNewMonth)
         {
-            return (int)SeasonStateController.StateType.February;
+            _koyomi.IsNewMonth = false;
+            return (int)MonthStateController.StateType.November;
         }
         return (int)StateType;
     }

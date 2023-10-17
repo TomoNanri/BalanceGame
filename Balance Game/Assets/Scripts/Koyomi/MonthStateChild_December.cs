@@ -2,21 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeasonStateChild_December : AbstractStateChild
+public class MonthStateChild_December : MonthStateChild
 {
-    private Koyomi _koyomi;
     private Oshiro _oshiro;
     public override void Initialize(int stateType)
     {
-        _koyomi = GameObject.FindAnyObjectByType<Koyomi>();
         _oshiro = GameObject.FindAnyObjectByType<Oshiro>();
-
         base.Initialize(stateType);
-    }
-    public override void OnEnter()
-    {
-        Debug.Log($"[{this.name}] Enter ** {StateType} **");
-        _koyomi.ShowKoyomi();
     }
     public override void OnExit()
     {
@@ -30,7 +22,8 @@ public class SeasonStateChild_December : AbstractStateChild
     {
         if (_koyomi.IsNewMonth)
         {
-            return (int)SeasonStateController.StateType.January;
+            _koyomi.IsNewMonth = false;
+            return (int)MonthStateController.StateType.January;
         }
         return (int)StateType;
     }
