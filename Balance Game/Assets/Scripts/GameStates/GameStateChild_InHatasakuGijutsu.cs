@@ -14,6 +14,7 @@ public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
     private Tokuten _tokutenPanel;
     private Koyomi _koyomi;
     private int _cost;
+    private List<Nouchi> _nouchi = new List<Nouchi>();
 
 
     public override void Initialize(int stateType)
@@ -26,6 +27,12 @@ public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
 
         _tokutenPanel = GameObject.FindAnyObjectByType<Tokuten>();
         _koyomi = GameObject.FindAnyObjectByType<Koyomi>();
+
+        _nouchi.Clear();
+        _nouchi.Add(GameObject.Find("UshitoraMura/Nouchi").GetComponent<Nouchi>());
+        _nouchi.Add(GameObject.Find("InuiMura/Nouchi").GetComponent<Nouchi>());
+        _nouchi.Add(GameObject.Find("HitsujisaruMura/Nouchi").GetComponent<Nouchi>());
+        _nouchi.Add(GameObject.Find("TatsumiMura/Nouchi").GetComponent<Nouchi>());
 
         _commandCanvas.SetActive(false);
 
@@ -40,7 +47,7 @@ public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
 
         if (_oshiro.HatakeLevel <= _oshiro.LevelMax)
         {
-                _cost = _oshiro.LevelList[_oshiro.TaLevel] * 64;
+                _cost = _oshiro.LevelList[_oshiro.HatakeLevel] * 64;
                 if (_tokutenPanel.KobanCount >= _cost)
                 {
                     _hatasakugijutsu.Setup($"{_cost} の小判を消費します。", true);
@@ -73,6 +80,12 @@ public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
 
                     // レベル上げを行う
                     _oshiro.HatakeLevel++;
+
+                    // 各村の農地表示を更新
+                    foreach(Nouchi n in _nouchi)
+                    {
+                        n.SetUpdateFlag();
+                    }
 
                     return (int)GameManager.StateType.Progress;
 

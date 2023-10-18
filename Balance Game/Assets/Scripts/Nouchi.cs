@@ -17,6 +17,7 @@ public class Nouchi : MonoBehaviour
     [SerializeField]
     private Vector2[] _kukaku;
 
+    private GameManager _gm;
     private Oshiro _oshiro;
 
     private bool _isUpdate = false;
@@ -24,7 +25,10 @@ public class Nouchi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _oshiro = GameObject.FindAnyObjectByType<Oshiro>();
+        _gm = FindAnyObjectByType<GameManager>();
+        _gm.InitializeHandler += ResetNouchi;
+
+        _oshiro = FindAnyObjectByType<Oshiro>();
 
         // 村名取得
         _muramei = transform.parent.name;
@@ -34,6 +38,7 @@ public class Nouchi : MonoBehaviour
         TaNoKazu = NouchiMaxCount / 2;
         HatakeNoKazu = TaNoKazu;
         _isUpdate = true;
+        Debug.Log($"[{name}] 農地比率初期化！");
 
         // 田畑の配置場所決定（農地に対する相対座標）
         _kukaku = new Vector2[NouchiMaxCount];
@@ -74,7 +79,14 @@ public class Nouchi : MonoBehaviour
             }
         }
     }
-    public void SetUpdate()
+    private void ResetNouchi()
+    {
+        // 田畑の比率初期設定
+        TaNoKazu = NouchiMaxCount / 2;
+        HatakeNoKazu = TaNoKazu;
+        _isUpdate = true;
+    }
+    public void SetUpdateFlag()
     {
         _isUpdate = true;
     }

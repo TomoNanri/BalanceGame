@@ -6,6 +6,10 @@ using TMPro;
 
 public class Mura : MonoBehaviour
 {
+    public bool IsIkkiJoutai
+    {
+        get { return _ikkiNoumin != null ? true : false; }
+    }
     [SerializeField]
     private int _satisfaction;
     [SerializeField]
@@ -26,6 +30,7 @@ public class Mura : MonoBehaviour
 
     private GameObject _popUp;
 
+    private GameManager _gm;
     private Oshiro _oshiro;
     private Koyomi _koyomi;
     private Nouchi _nouchi;
@@ -37,13 +42,15 @@ public class Mura : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _oshiro = GameObject.FindAnyObjectByType<Oshiro>();
-        _koyomi = GameObject.FindAnyObjectByType<Koyomi>();
+        _gm = FindAnyObjectByType<GameManager>();
+        _gm.InitializeHandler += ResetMura;
+
+        _oshiro = FindAnyObjectByType<Oshiro>();
+        _koyomi = FindAnyObjectByType<Koyomi>();
         _nouchi = transform.Find("Nouchi").GetComponent<Nouchi>();
 
         // 農民（普通）活動開始
         _normalNomin = Instantiate(_prefab[0], this.transform);
-        //_normalNoumin = Instantiate(_prefab[3], this.transform);
 
         // PopUp設定
         _isKyusaiRequested = false;
@@ -70,10 +77,36 @@ public class Mura : MonoBehaviour
             _popUp = null;
         }
     }
+    private void ResetMura()
+    {
+        if(_ikkiNoumin != null)
+        {
+            Destroy(_ikkiNoumin);
+            _ikkiNoumin = null;
+        }
+        if(_normalNomin != null)
+        {
+            Destroy(_normalNomin);
+        }
+
+        // 農民（普通）活動開始
+        _normalNomin = Instantiate(_prefab[0], this.transform);
+
+        // PopUp設定
+        _isKyusaiRequested = false;
+        if(_popUp != null)
+        {
+            Destroy(_popUp);
+            _popUp = null;
+        }
+
+        // 満足度初期化
+        _satisfaction = 50;
+    }
     public bool CheckSatisfaction()
     {
-        var _HatakePerformance = _nouchi.HatakeNoKazu * _oshiro.LevelList[_oshiro.HatakeLevel];
-        var _TaPerformance = _nouchi.TaNoKazu * _oshiro.LevelList[_oshiro.TaLevel];
+        var _HatakePerformance = _nouchi.HatakeNoKazu * _oshiro.LevelList[_oshiro.HatakeLevel] * (100 + _koyomi.HatakeHosei) / 100;
+        var _TaPerformance = _nouchi.TaNoKazu * _oshiro.LevelList[_oshiro.TaLevel] * (100 + _koyomi.TaHosei) / 100;
         float delta = (float)Math.Tanh((double)(alpha * (float)(_HatakePerformance - _TaPerformance) / 1000 / 2.0f)) * 6.0f;
 
         Debug.Log($"[{name}] _HatakePerformance={_HatakePerformance}, _TaPerformance={_TaPerformance}, tanh={Math.Tanh((double)(alpha * (float)(_HatakePerformance - _TaPerformance) / 1000 / 2.0f))}, delta={delta}");
@@ -144,7 +177,7 @@ public class Mura : MonoBehaviour
         {
             Debug.LogError($"[{name}] １０月以外にボタンが押された！");
         }
-        return _nouchi.TaNoKazu * _oshiro.LevelList[_oshiro.TaLevel];
+        return _nouchi.TaNoKazu * _oshiro.LevelList[_oshiro.TaLevel] * (100 + _koyomi.TaHosei) / 100;
     }
     public void DoKyusai(float sec)
     {

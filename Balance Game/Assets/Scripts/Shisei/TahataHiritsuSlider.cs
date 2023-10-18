@@ -9,6 +9,7 @@ public class TahataHiritsuSlider : MonoBehaviour
     private int _newTaNoKazu;
     private int _newHatakeNoKazu;
     private string _muramei;
+    private GameManager _gm;
     private Nouchi _nouchi;
     private Slider _slider;
     private TextMeshProUGUI _taText;
@@ -19,18 +20,14 @@ public class TahataHiritsuSlider : MonoBehaviour
     {
         _muramei = this.name;
         _nouchi = GameObject.Find($"{_muramei}/Nouchi").GetComponent<Nouchi>();
+
+        _taText = transform.Find("TanokazuText").GetComponent<TextMeshProUGUI>();
+        _hatakeText = transform.Find("HatakenokazuText").GetComponent<TextMeshProUGUI>();
+
         _slider = transform.Find("Hiritsu_Slider").gameObject.GetComponent<Slider>();
 
-        // Slider 初期値読み取り
-        _newHatakeNoKazu = (int)(_slider.value * (float)_nouchi.NouchiMaxCount);
-        _newTaNoKazu = _nouchi.NouchiMaxCount - _newHatakeNoKazu;
+        Debug.Log($"[{name}] _nouchiの田の数={_nouchi.TaNoKazu}　畑の数={_nouchi.HatakeNoKazu}");
 
-        _taText = GameObject.Find($"{_muramei}/TanokazuText").GetComponent<TextMeshProUGUI>();
-        _hatakeText = GameObject.Find($"{_muramei}/HatakenokazuText").GetComponent<TextMeshProUGUI>();
-
-        // Slider 初期値をインジケータに設定
-        _taText.SetText($"田{_newTaNoKazu}");
-        _hatakeText.SetText($"畑{_newHatakeNoKazu}");
 
         // 田畑比率変更イベントのハンドラ登録
         GameObject.Find("HiritsuCanvas").GetComponent<TahataHiritsuCanvas>().OkEvent += Execute;
@@ -41,17 +38,34 @@ public class TahataHiritsuSlider : MonoBehaviour
     {
         
     }
+    public void SetSliderValue()
+    {
+        Debug.Log($"[{_muramei}] スライダー設定が呼ばれた！{_nouchi.TaNoKazu}：{_slider.value}：{_nouchi.HatakeNoKazu}");
+
+        // Slider 初期値設定
+        _slider.value = (float)_nouchi.HatakeNoKazu / (float)_nouchi.NouchiMaxCount;
+
+        Debug.Log($"[{_muramei}] スライダー値がセットされた！{_nouchi.TaNoKazu}：{_slider.value}：{_nouchi.HatakeNoKazu}");
+
+        // Slider 初期値をインジケータに設定
+        _taText.SetText($"田{_nouchi.TaNoKazu}");
+        _hatakeText.SetText($"畑{_nouchi.HatakeNoKazu}");
+    }
     public void OnChangeValue()
     {
-        _newHatakeNoKazu = (int)(_slider.value * 32f);
+        Debug.Log($"[{_muramei}] Slider の値が変わった！{_slider.value}");
+
+        // Slider の値に合わせてインジケータを暫定値に変更
+        _newHatakeNoKazu = (int)(_slider.value * _nouchi.NouchiMaxCount);
         _newTaNoKazu = _nouchi.NouchiMaxCount - _newHatakeNoKazu;
         _taText.SetText($"田{_newTaNoKazu}");
         _hatakeText.SetText($"畑{_newHatakeNoKazu}");
     }
     private void Execute()
     {
+        // Ok ボタンの押下で暫定値を決定値に反映
         _nouchi.TaNoKazu = _newTaNoKazu;
         _nouchi.HatakeNoKazu = _newHatakeNoKazu;
-        _nouchi.SetUpdate();
+        _nouchi.SetUpdateFlag();
     }
 }

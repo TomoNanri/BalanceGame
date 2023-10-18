@@ -5,6 +5,7 @@ using System;
 
 public class GameManager : AbstractStateController
 {
+    public Action InitializeHandler;
     public enum StateType 
     {
         Initialize, 

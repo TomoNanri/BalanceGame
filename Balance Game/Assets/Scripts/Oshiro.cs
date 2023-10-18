@@ -22,7 +22,7 @@ public class Oshiro : MonoBehaviour
     public int KyusaiKouka = 3;
 
     private GameManager _gm;
-    private GameObject _mainMenuCanvas;
+
     private RaycastHit _hitObj;
 
     public List<Mura> MuraList = new List<Mura>();
@@ -37,11 +37,14 @@ public class Oshiro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MuraList.Clear();
         MuraList.Add(GameObject.Find("UshitoraMura").GetComponent<Mura>());
         MuraList.Add(GameObject.Find("InuiMura").GetComponent<Mura>());
         MuraList.Add(GameObject.Find("HitsujisaruMura").GetComponent<Mura>());
         MuraList.Add(GameObject.Find("TatsumiMura").GetComponent<Mura>());
         _gm = GameObject.FindAnyObjectByType<GameManager>();
+        _gm.InitializeHandler += ResetOshiro;
+
         IsSelectable = false;
     }
 
@@ -82,5 +85,12 @@ public class Oshiro : MonoBehaviour
             _otonosama.transform.position = pos;
         }
         _otonosama.SetActive(isActive);
+    }
+    private void ResetOshiro()
+    {
+        IsSelectable = false;
+        TaLevel = 1;
+        HatakeLevel = 1;
+        Luck = 50;
     }
 }

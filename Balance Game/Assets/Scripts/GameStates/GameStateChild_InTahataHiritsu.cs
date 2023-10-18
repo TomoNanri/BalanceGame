@@ -18,9 +18,17 @@ public class GameStateChild_InTahataHiritsu : AbstractStateChild
         _commandCanvas = _oshiro.transform.Find("HiritsuCanvas").gameObject;
         _tahataHiritsu = _commandCanvas.GetComponent<TahataHiritsuCanvas>();
         _tahataHiritsu.OnButton += ButtonEventHandler;
+
+        StartCoroutine(WaitForUpdate());
         
-        _commandCanvas.SetActive(false);
         base.Initialize(stateType);
+    }
+    IEnumerator WaitForUpdate()
+    {
+        Debug.Log($"[{name}] *InTahataHiritsu State Child is waiting firast update*");
+        yield return new WaitForEndOfFrame();
+        Debug.Log($"[{name}] *InTahataHiritsu State Child waiting Complete*");
+        _commandCanvas.SetActive(false);
     }
     public override void OnEnter()
     {

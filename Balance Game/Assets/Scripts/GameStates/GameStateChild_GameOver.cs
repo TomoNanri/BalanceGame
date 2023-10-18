@@ -6,29 +6,54 @@ public class GameStateChild_GameOver : AbstractStateChild
 {
     private GameManager _gm;
     private Oshiro _oshiro;
+    private GameObject _gameOverCanvas;
+    private GameOver _gameOver;
+    private bool _isButtonOn = false;
+    private string _buttonName;
     public override void Initialize(int stateType)
     {
         _gm = GetComponent<GameManager>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
+        _gameOverCanvas = GameObject.Find("GameOverCanvas");
+        _gameOver = _gameOverCanvas.GetComponent<GameOver>();
+        _gameOver.OnButton += OnButtonEventHandler;
+
+        _gameOverCanvas.SetActive(false);
+
         base.Initialize(stateType);
     }
     public override void OnEnter()
     {
-        //// 施政メニューの選択を可能にする（城選択可能）
-        //Debug.Log($"[{this.name}] Enter WaitInput State!");
-        //_oshiro.IsSelectable = true;
+        // ボタンイベント受信変数を初期化
+        _isButtonOn = false;
+        _buttonName = default;
+
+        // Game Over キャンバスを表示する
+        Debug.Log($"[{name}] Enter GameOver State!");
+        _oshiro.IsSelectable = false;
+        _gameOverCanvas.SetActive(true);
+
+        // Game Over ジングルを流す
     }
     public override void OnExit()
     {
-        //// 施政メニューの選択を不可にする（城選択不能）
-        //_oshiro.IsSelectable = false;
+        // Game Over キャンバスを非表示にする
+        _gameOverCanvas.SetActive(false);
+        
+        // Game Over ジングルを止める
     }
 
     public override int StateUpdate()
     {
-        //if (_gm.OnTurnEnd)
-        //{
-        //}
+        if (_isButtonOn)
+        {
+            return (int)GameManager.StateType.Initialize;
+        }
         return (int)StateType;
+    }
+    private void OnButtonEventHandler(object sender, ButtonEventArgs args)
+    {
+        _isButtonOn = true;
+        _buttonName = args.ButtonName;
     }
 }

@@ -22,6 +22,9 @@ public class BadgeScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _gm = FindAnyObjectByType<GameManager>();
+        _gm.InitializeHandler += ResetBadge;
+
         // バッジの表示閾値をバッジ名から求める
         _thresholdValue = 10000 * int.Parse(Regex.Replace(name, @"[^0-9]", ""));
         Debug.Log($"[{name}] _thresholdValue={_thresholdValue}");
@@ -46,7 +49,11 @@ public class BadgeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    private void ResetBadge()
+    {
+        Inactivate();
     }
     private void EventHandler(KokudakaEventArgs arg)
     {
