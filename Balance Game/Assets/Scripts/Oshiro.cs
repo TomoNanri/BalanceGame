@@ -9,6 +9,9 @@ public class Oshiro : MonoBehaviour
     public delegate void OshiroSelectedEventHandler(object sender, EventArgs args);
     public event OshiroSelectedEventHandler OshiroSelected;
 
+    public delegate void ShisakuEndEventHandler(object sender, EventArgs args);
+    public event ShisakuEndEventHandler ShisakuEnd;
+
     public readonly int[] LevelList = { 200, 400, 600, 1000, 1600, 2600, 4200, 6800, 11000, 17800 };
     public int LevelMax = 10;
     public bool IsSelectable { get; set; }
@@ -85,6 +88,17 @@ public class Oshiro : MonoBehaviour
             _otonosama.transform.position = pos;
         }
         _otonosama.SetActive(isActive);
+    }
+    public void RaiseShisakuEnd(object sender, EventArgs args)
+    {
+        if (ShisakuEnd != null)
+        {
+            ShisakuEnd(sender, args);
+        }
+        else
+        {
+            Debug.LogError($"[{name}] EventHandler not found! (sender={sender}, args={args})");
+        }
     }
     private void ResetOshiro()
     {

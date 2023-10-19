@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
 {
@@ -66,6 +67,9 @@ public class GameStateChild_InHatasakuGijutsu : AbstractStateChild
     {
         // 畑作技術開発キャンバスを消去する
         _commandCanvas.SetActive(false);
+
+        // 後続モーションが無いのでイベント終了にする。
+        _oshiro.RaiseShisakuEnd(this, EventArgs.Empty);
     }
 
     public override int StateUpdate()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_InShisatsu : AbstractStateChild
 {
@@ -32,7 +33,7 @@ public class GameStateChild_InShisatsu : AbstractStateChild
     public override void OnEnter()
     {
         // 視察コスト計算
-        _cost = _tokutenPanel.Kokudaka * 3 / 100;
+        _cost = _tokutenPanel.Kokudaka * 1 / 100;
 
         // コマンドキャンバスを表示する
         Debug.Log($"[{this.name}] Enter InKyusai_State!");
@@ -58,26 +59,44 @@ public class GameStateChild_InShisatsu : AbstractStateChild
     {
         if (_isButtonEventOn)
         {
-            switch (_buttonName)
+            if (_buttonName == "Cancel")
             {
-                case "GoNorth":
-                case "GoEast":
-                case "GoSouth":
-                case "GoWest":
-                    // 小判を消費する
-                    _tokutenPanel.UseKoban(_cost);
+                return (int)GameManager.StateType.InMainMenu;
+            }
+            else {
+                // 小判を消費する
+                _tokutenPanel.UseKoban(_cost);
 
-                    // お殿様が視察モーションを実行する
-                    Debug.Log($"[{name}] 視察開始！ {_buttonName}方面");
+                // お殿様が視察モーションを実行する（EndEventは視察モーション内）
+                Debug.Log($"[{name}] 視察開始！ {_buttonName}方面");
 
-                    return (int)GameManager.StateType.Progress;
+                switch (_buttonName)
+                {
+                    case "GoNorth":
+                        GameObject.Find("Kitakaidou").GetComponent<Kaidou>().StartShisatsu();
+                        break;
 
-                case "Cancel":
-                    return (int)GameManager.StateType.InMainMenu;
+                    case "GoEast":
+                        GameObject.Find("Higasikaidou").GetComponent<Kaidou>().StartShisatsu();
+                        break;
 
-                default:
-                    Debug.LogError($"[{name}] Undefind button found.");
-                    return (int)StateType;
+                    case "GoSouth":
+                        GameObject.Find("Minamikaidou").GetComponent<Kaidou>().StartShisatsu();
+                        break;
+
+                    case "GoWest":
+                        GameObject.Find("Nisikaidou").GetComponent<Kaidou>().StartShisatsu();
+                        break;
+
+                    case "Cancel":
+                        break;
+
+                    default:
+                        Debug.LogError($"[{name}] Undefind button found.");
+                        break;
+                }
+
+                return (int)GameManager.StateType.Progress;
             }
         }
         return (int)StateType;

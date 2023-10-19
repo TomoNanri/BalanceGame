@@ -31,6 +31,7 @@ public class TahataHiritsuCanvas : MonoBehaviour
     }
     public void Setup(string msg)
     {
+        OkEvent = null;
         _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
         _restrictionMSG.SetText(msg);
         foreach(Mura m in _oshiro.MuraList)

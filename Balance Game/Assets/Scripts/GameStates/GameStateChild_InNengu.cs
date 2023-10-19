@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class GameStateChild_InNengu : AbstractStateChild
 {
     private GameManager _gm;
@@ -56,6 +56,9 @@ public class GameStateChild_InNengu : AbstractStateChild
                     // 得点パネルの更新
                     _tokutenPanel.UpdateKokudaka(_nengu);
                     _tokutenPanel.AddKoban(_nengu);
+
+                    // 後続モーションが無いのでイベント終了にする。
+                    _oshiro.RaiseShisakuEnd(this, EventArgs.Empty);
 
                     return (int)GameManager.StateType.Progress;
 

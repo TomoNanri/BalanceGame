@@ -18,11 +18,14 @@ public class GameStateChild_Progress : AbstractStateChild
         _gm = GetComponent<GameManager>();
         _koyomi = GameObject.Find("Koyomi").GetComponent<Koyomi>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
+        _oshiro.ShisakuEnd += EventEndHandler;
 
         _UshitoraMura = GameObject.Find("UshitoraMura").GetComponent<Mura>();
         _InuiMura = GameObject.Find("InuiMura").GetComponent<Mura>();
         _HitsujisaruMura = GameObject.Find("HitsujisaruMura").GetComponent<Mura>();
         _TatsumiMura = GameObject.Find("TatsumiMura").GetComponent<Mura>();
+
+        _isEventComplete = false;
 
         base.Initialize(stateType);
     }
@@ -39,12 +42,10 @@ public class GameStateChild_Progress : AbstractStateChild
         _InuiMura.CheckSatisfaction();
         _HitsujisaruMura.CheckSatisfaction();
         _TatsumiMura.CheckSatisfaction();
-
-        _isEventComplete = true;
     }
     public override void OnExit()
     {
-        // None
+        _isEventComplete = false;
     }
 
     public override int StateUpdate()
@@ -56,5 +57,8 @@ public class GameStateChild_Progress : AbstractStateChild
         }
         return (int)StateType;
     }
-
+    private void EventEndHandler(object sender, EventArgs args)
+    {
+        _isEventComplete = true;
+    }
 }

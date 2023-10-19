@@ -14,9 +14,32 @@ public class TahataHiritsuSlider : MonoBehaviour
     private Slider _slider;
     private TextMeshProUGUI _taText;
     private TextMeshProUGUI _hatakeText;
+    private bool _isSliderChanged = false;
 
     // Start is called before the first frame update
     void Start()
+    {
+        //_muramei = this.name;
+        //_nouchi = GameObject.Find($"{_muramei}/Nouchi").GetComponent<Nouchi>();
+
+        //_taText = transform.Find("TanokazuText").GetComponent<TextMeshProUGUI>();
+        //_hatakeText = transform.Find("HatakenokazuText").GetComponent<TextMeshProUGUI>();
+
+        //_slider = transform.Find("Hiritsu_Slider").gameObject.GetComponent<Slider>();
+
+        //Debug.Log($"[{name}] _nouchiの田の数={_nouchi.TaNoKazu}　畑の数={_nouchi.HatakeNoKazu}");
+
+
+        //// 田畑比率変更イベントのハンドラ登録
+        //GameObject.Find("HiritsuCanvas").GetComponent<TahataHiritsuCanvas>().OkEvent += Execute;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+    private void OnEnable()
     {
         _muramei = this.name;
         _nouchi = GameObject.Find($"{_muramei}/Nouchi").GetComponent<Nouchi>();
@@ -28,15 +51,6 @@ public class TahataHiritsuSlider : MonoBehaviour
 
         Debug.Log($"[{name}] _nouchiの田の数={_nouchi.TaNoKazu}　畑の数={_nouchi.HatakeNoKazu}");
 
-
-        // 田畑比率変更イベントのハンドラ登録
-        GameObject.Find("HiritsuCanvas").GetComponent<TahataHiritsuCanvas>().OkEvent += Execute;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public void SetSliderValue()
     {
@@ -50,6 +64,8 @@ public class TahataHiritsuSlider : MonoBehaviour
         // Slider 初期値をインジケータに設定
         _taText.SetText($"田{_nouchi.TaNoKazu}");
         _hatakeText.SetText($"畑{_nouchi.HatakeNoKazu}");
+        // 田畑比率変更イベントのハンドラ登録
+        GameObject.Find("HiritsuCanvas").GetComponent<TahataHiritsuCanvas>().OkEvent += Execute;
     }
     public void OnChangeValue()
     {
@@ -60,12 +76,19 @@ public class TahataHiritsuSlider : MonoBehaviour
         _newTaNoKazu = _nouchi.NouchiMaxCount - _newHatakeNoKazu;
         _taText.SetText($"田{_newTaNoKazu}");
         _hatakeText.SetText($"畑{_newHatakeNoKazu}");
+
+        _isSliderChanged = true;
     }
     private void Execute()
     {
+        Debug.Log($"[{name}] OKボタンが押された！！");
         // Ok ボタンの押下で暫定値を決定値に反映
-        _nouchi.TaNoKazu = _newTaNoKazu;
-        _nouchi.HatakeNoKazu = _newHatakeNoKazu;
-        _nouchi.SetUpdateFlag();
+        if (_isSliderChanged)
+        {
+            _isSliderChanged = false;
+            _nouchi.TaNoKazu = _newTaNoKazu;
+            _nouchi.HatakeNoKazu = _newHatakeNoKazu;
+            _nouchi.SetUpdateFlag();
+        }
     }
 }

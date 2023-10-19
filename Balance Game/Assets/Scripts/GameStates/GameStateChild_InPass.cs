@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_InPass : AbstractStateChild
 {
@@ -48,6 +49,9 @@ public class GameStateChild_InPass : AbstractStateChild
                     if (_godOfDice.DiceCheckD100(_oshiro.Luck, 1))
                         if (_oshiro.Luck < 96)
                             _oshiro.Luck++;
+
+                    // 後続モーションが無いのでイベント終了にする。
+                    _oshiro.RaiseShisakuEnd(this, EventArgs.Empty);
 
                     return (int)GameManager.StateType.Progress;
 

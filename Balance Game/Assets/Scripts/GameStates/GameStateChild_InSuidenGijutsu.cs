@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_InSuidenGijutsu : AbstractStateChild
 {
@@ -80,6 +81,9 @@ public class GameStateChild_InSuidenGijutsu : AbstractStateChild
 
                     // レベル上げを予約する
                     _koyomi.IsTaLevelUpOrdered = true;
+
+                    // 後続モーションが無いのでイベント終了にする。
+                    _oshiro.RaiseShisakuEnd(this, EventArgs.Empty);
 
                     return (int)GameManager.StateType.Progress;
 

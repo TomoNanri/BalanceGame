@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_InNouguKounyuu : AbstractStateChild
 {
@@ -67,6 +68,9 @@ public class GameStateChild_InNouguKounyuu : AbstractStateChild
 
                     // レベル上げを予約する
                     _koyomi.PurchaseNougu();
+
+                    // 後続モーションが無いのでイベント終了にする。
+                    _oshiro.RaiseShisakuEnd(this, EventArgs.Empty);
 
                     return (int)GameManager.StateType.Progress;
 

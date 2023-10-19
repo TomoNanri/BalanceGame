@@ -1906,6 +1906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 77251193}
   - component: {fileID: 77251194}
+  - component: {fileID: 77251195}
   m_Layer: 0
   m_Name: GodOfLuck
   m_TagString: Untagged
@@ -1940,6 +1941,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32612b8e32601a742b8b7cc0a1c13ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &77251195
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77251192}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0afab55d440bde74bbc02204baf6b5ed, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.23
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &82302776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6626,6 +6723,8 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
+  _WarningSatisfactionLevel: 32
+  _GoodSatisfactionLevel: 72
   alpha: 0.4
   _thresholdOfIkki: 20
   _prefab:
@@ -8085,6 +8184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 583101781}
   - component: {fileID: 583101782}
+  - component: {fileID: 583101783}
   m_Layer: 0
   m_Name: Higasikaidou
   m_TagString: Untagged
@@ -8159,6 +8259,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &583101783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583101780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d4eacd564b7ea469b14ed3ed82a63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _otonosama: {fileID: 1298796840899604118, guid: a0521a3c2fe5cae428d65b7bdaa5cfad, type: 3}
+  _responseNoumin: {fileID: 2358072148552040814, guid: abdaf53065a8b694987e1b98f5e107a8, type: 3}
 --- !u!1 &583273168
 GameObject:
   m_ObjectHideFlags: 0
@@ -11084,6 +11198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 846802295}
   - component: {fileID: 846802296}
+  - component: {fileID: 846802297}
   m_Layer: 0
   m_Name: Kitakaidou
   m_TagString: Untagged
@@ -11158,6 +11273,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &846802297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846802294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d4eacd564b7ea469b14ed3ed82a63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _otonosama: {fileID: 1298796840899604118, guid: a0521a3c2fe5cae428d65b7bdaa5cfad, type: 3}
+  _responseNoumin: {fileID: 2358072148552040814, guid: abdaf53065a8b694987e1b98f5e107a8, type: 3}
 --- !u!1 &850528408
 GameObject:
   m_ObjectHideFlags: 0
@@ -12042,6 +12171,8 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
+  _WarningSatisfactionLevel: 32
+  _GoodSatisfactionLevel: 72
   alpha: 0.2
   _thresholdOfIkki: 20
   _prefab:
@@ -17901,6 +18032,8 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
+  _WarningSatisfactionLevel: 32
+  _GoodSatisfactionLevel: 72
   alpha: 0.2
   _thresholdOfIkki: 20
   _prefab:
@@ -22492,6 +22625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707400468}
   - component: {fileID: 1707400469}
+  - component: {fileID: 1707400470}
   m_Layer: 0
   m_Name: Nisikaidou
   m_TagString: Untagged
@@ -22566,6 +22700,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1707400470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707400467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d4eacd564b7ea469b14ed3ed82a63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _otonosama: {fileID: 1298796840899604118, guid: a0521a3c2fe5cae428d65b7bdaa5cfad, type: 3}
+  _responseNoumin: {fileID: 2358072148552040814, guid: abdaf53065a8b694987e1b98f5e107a8, type: 3}
 --- !u!1 &1714615349
 GameObject:
   m_ObjectHideFlags: 0
@@ -25244,6 +25392,8 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
+  _WarningSatisfactionLevel: 32
+  _GoodSatisfactionLevel: 72
   alpha: 0.4
   _thresholdOfIkki: 20
   _prefab:
@@ -27916,6 +28066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2115127736}
   - component: {fileID: 2115127737}
+  - component: {fileID: 2115127738}
   m_Layer: 0
   m_Name: Minamikaidou
   m_TagString: Untagged
@@ -27990,6 +28141,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2115127738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115127735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d4eacd564b7ea469b14ed3ed82a63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _otonosama: {fileID: 1298796840899604118, guid: a0521a3c2fe5cae428d65b7bdaa5cfad, type: 3}
+  _responseNoumin: {fileID: 2358072148552040814, guid: abdaf53065a8b694987e1b98f5e107a8, type: 3}
 --- !u!1 &2119914072
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_InMatsuri : AbstractStateChild
 {
@@ -75,8 +76,11 @@ public class GameStateChild_InMatsuri : AbstractStateChild
                         e.StartMatsuri();
                     }
 
-                    //Debug.Log($"[{name}] 祭開催中");
+                    // この季節の祭は実施済みにする。
                     _koyomi.IsMatsuriDone = true;
+
+                    // 後続モーションが無いのでイベント終了にする。（祭状態は翌月までつづく）
+                    _oshiro.RaiseShisakuEnd(this, EventArgs.Empty);
 
                     return (int)GameManager.StateType.Progress;
 

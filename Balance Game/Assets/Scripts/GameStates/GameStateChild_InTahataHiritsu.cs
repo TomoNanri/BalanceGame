@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameStateChild_InTahataHiritsu : AbstractStateChild
 {
@@ -19,16 +20,9 @@ public class GameStateChild_InTahataHiritsu : AbstractStateChild
         _tahataHiritsu = _commandCanvas.GetComponent<TahataHiritsuCanvas>();
         _tahataHiritsu.OnButton += ButtonEventHandler;
 
-        StartCoroutine(WaitForUpdate());
-        
-        base.Initialize(stateType);
-    }
-    IEnumerator WaitForUpdate()
-    {
-        Debug.Log($"[{name}] *InTahataHiritsu State Child is waiting firast update*");
-        yield return new WaitForEndOfFrame();
-        Debug.Log($"[{name}] *InTahataHiritsu State Child waiting Complete*");
         _commandCanvas.SetActive(false);
+
+        base.Initialize(stateType);
     }
     public override void OnEnter()
     {
@@ -51,6 +45,8 @@ public class GameStateChild_InTahataHiritsu : AbstractStateChild
             switch (_buttonName)
             {
                 case "Ok":
+                    // 後続モーションが無いのでイベント終了にする。
+                    _oshiro.RaiseShisakuEnd(this, EventArgs.Empty);
                     return (int)GameManager.StateType.Progress;
 
                 case "Cancel":
