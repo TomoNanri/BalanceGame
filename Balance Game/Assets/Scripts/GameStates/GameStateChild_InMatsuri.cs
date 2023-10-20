@@ -12,6 +12,7 @@ public class GameStateChild_InMatsuri : AbstractStateChild
     private bool _isButtonEventOn;
     private string _buttonName;
 
+    private AudioChanger _audioChanger;
 
     private Tokuten _tokutenPanel;
     private Koyomi _koyomi;
@@ -26,7 +27,9 @@ public class GameStateChild_InMatsuri : AbstractStateChild
 
         _tokutenPanel = GameObject.FindAnyObjectByType<Tokuten>();
         _koyomi = GameObject.FindAnyObjectByType<Koyomi>();
-        
+
+        _audioChanger = FindAnyObjectByType<AudioChanger>();
+
         _commandCanvas.SetActive(false);
         base.Initialize(stateType);
     }
@@ -76,6 +79,13 @@ public class GameStateChild_InMatsuri : AbstractStateChild
                         e.StartMatsuri();
                     }
 
+                    // BGM 切り替え
+                    _audioChanger.StopBGM();
+                    _audioChanger.PlayBGM(AudioChanger.BGMType.Matsuri);
+
+                    // 翌々月に入るタイミングで Normal BGM へ戻す
+                    _koyomi.AddCalendarEvent((_koyomi.Tsuki + 2) % 12, StopMatsuri);
+
                     // この季節の祭は実施済みにする。
                     _koyomi.IsMatsuriDone = true;
 
@@ -98,5 +108,10 @@ public class GameStateChild_InMatsuri : AbstractStateChild
     {
         _isButtonEventOn = true;
         _buttonName = args.ButtonName;
+    }
+    private void StopMatsuri()
+    {
+        _audioChanger.StopBGM();
+        _audioChanger.PlayBGM(AudioChanger.BGMType.Normal);
     }
 }

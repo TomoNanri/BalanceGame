@@ -8,6 +8,9 @@ public class GameStateChild_GameOver : AbstractStateChild
     private Oshiro _oshiro;
     private GameObject _gameOverCanvas;
     private GameOver _gameOver;
+
+    private AudioChanger _audioChanger;
+
     private bool _isButtonOn = false;
     private string _buttonName;
     public override void Initialize(int stateType)
@@ -17,6 +20,8 @@ public class GameStateChild_GameOver : AbstractStateChild
         _gameOverCanvas = GameObject.Find("GameOverCanvas");
         _gameOver = _gameOverCanvas.GetComponent<GameOver>();
         _gameOver.OnButton += OnButtonEventHandler;
+
+        _audioChanger = FindAnyObjectByType<AudioChanger>();
 
         _gameOverCanvas.SetActive(false);
 
@@ -34,13 +39,17 @@ public class GameStateChild_GameOver : AbstractStateChild
         _gameOverCanvas.SetActive(true);
 
         // Game Over ジングルを流す
+        _audioChanger.StopBGM();
+        _audioChanger.PlayBGM(AudioChanger.BGMType.GameOver);
     }
     public override void OnExit()
     {
         // Game Over キャンバスを非表示にする
         _gameOverCanvas.SetActive(false);
-        
+
         // Game Over ジングルを止める
+        _audioChanger.StopBGM();
+        _audioChanger.PlayBGM(AudioChanger.BGMType.Normal);
     }
 
     public override int StateUpdate()

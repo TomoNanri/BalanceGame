@@ -63,7 +63,9 @@ public class GameManager : AbstractStateController
         CurrentState = initializeStateType;
         stateDic[CurrentState].OnEnter();
     }
-    public float SoundLevel { get; set; }
+    public bool IsOnBGM { get; set; }
+    public bool IsOnSE { get; set; }
+    public float SoundLevel { get; set; } = 0.5f;
     public bool OnNewGame = false;
     public bool OnLoadGame = false;
 

@@ -7,6 +7,8 @@ public class MonthStateChild_April : AbstractMonthStateChild
     public override void OnEnter()
     {
         _koyomi.IsMatsuriDone = false;
+        _fuukei.SetFuukei(MonthStateController.Kisetsu.Haru);
+
         base.OnEnter();
     }
     

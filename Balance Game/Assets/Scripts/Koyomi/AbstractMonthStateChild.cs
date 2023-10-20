@@ -5,13 +5,14 @@ using System;
 
 public abstract class AbstractMonthStateChild : AbstractStateChild
 {
-
+    protected Fuukei _fuukei;
     protected Koyomi _koyomi;
     protected Action _tempAction;
 
     // ŠeŒ‹¤’Ê‚Ì‰Šú‰»ˆ—
     public override void Initialize(int stateType)
     {
+        _fuukei = GameObject.Find("KuniNoKanban/").GetComponent<Fuukei>();
         _koyomi = transform.parent.GetComponent<Koyomi>();
         _tempAction = null;
 

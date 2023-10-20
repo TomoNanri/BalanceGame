@@ -9,6 +9,7 @@ public class MonthStateChild_October : AbstractMonthStateChild
         _koyomi.ShowKoyomi();
         _koyomi.IsNenguAvailable = true;
         _koyomi.IsMatsuriDone = false;
+        _fuukei.SetFuukei(MonthStateController.Kisetsu.Aki);
         base.OnEnter();
     }
     public override void OnExit()

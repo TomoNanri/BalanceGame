@@ -38,6 +38,7 @@ public class Mura : MonoBehaviour
     private GameManager _gm;
     private GodOfLuck _dice;
     private Oshiro _oshiro;
+
     private Koyomi _koyomi;
     private Nouchi _nouchi;
 
@@ -193,7 +194,7 @@ public class Mura : MonoBehaviour
         }
         _normalNomin = Instantiate(_prefab[3], this.transform);
         _koyomi.AddCalendarEvent((_koyomi.Tsuki + 2) % 12, StopMatsuri);
-        _satisfaction += _oshiro.MatsuriKouka;
+        _satisfaction += _oshiro.MatsuriKouka;    
     }
     public void StopMatsuri()
     {

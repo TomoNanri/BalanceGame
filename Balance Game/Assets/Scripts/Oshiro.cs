@@ -36,6 +36,7 @@ public class Oshiro : MonoBehaviour
     private GameObject _seppukuOtonosamaPrefab;
 
     private GameObject _otonosama;
+    private AudioSource _audioSource;
 
     // Start is called before the first frame update
     void Start()

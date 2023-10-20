@@ -9,6 +9,7 @@ public class MonthStateChild_September : AbstractMonthStateChild
         if (_koyomi.IsNewMonth)
         {
             _koyomi.IsNewMonth = false;
+            _fuukei.SetFuukei(MonthStateController.Kisetsu.Aki);
             return (int)MonthStateController.StateType.October;
         }
         return (int)StateType;

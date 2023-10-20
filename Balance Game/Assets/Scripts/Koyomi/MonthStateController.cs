@@ -5,6 +5,7 @@ using System;
 
 public class MonthStateController : AbstractStateController
 {
+    public enum Kisetsu { Fuyu = 0, Haru = 1, Natsu = 2, Aki = 3 }
     public enum StateType
     {
         January,

@@ -4,33 +4,31 @@ using UnityEngine;
 
 public class GodOfLuck : MonoBehaviour
 {
+    private GameManager _gm;
     private AudioSource _diceSE;
-    private int _soundEffectCount;
+    private bool _isDoundEffectOn;
 
     // Start is called before the first frame update
     void Start()
     {
         _diceSE = GetComponent<AudioSource>();
-        _soundEffectCount = 0;
+        _gm = FindAnyObjectByType<GameManager>();
+        _isDoundEffectOn = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_soundEffectCount > 0)
+        if (_isDoundEffectOn)
         {
+            _isDoundEffectOn = false;
             _diceSE.Play();
-            _soundEffectCount--;
         }
     }
-    //IEnumerator PlaySound()
-    //{
-    //    _diceSE.Play();
-    //    yield return new WaitWhile();
-    //}
     public bool DiceCheckD100(int Limit, int count)
     {
-        _soundEffectCount = 1;
+        if(_gm.IsOnSE)
+            _isDoundEffectOn = true;
 
         for (int i = 0; i < count; i++)
         {
@@ -51,7 +49,8 @@ public class GodOfLuck : MonoBehaviour
     public int GetDiceD6(int count)
     {
         int result = 0;
-        _soundEffectCount = 1;
+        if (_gm.IsOnSE)
+            _isDoundEffectOn = true;
 
         for (int i = 0; i < count; i++)
         {

@@ -80,10 +80,11 @@ public class Kaidou : MonoBehaviour
             var pos = _otonosamaPosition[i];
             yield return new WaitForSeconds(appearInterval);
             var otonosama = Instantiate(_otonosama, pos, Quaternion.identity);
-
+            var otonosamaSerifu = otonosama.transform.Find("Canvas/Panel/Serifu").GetComponent<TextMeshProUGUI>();
 
             if (i != 0)
             {
+                otonosamaSerifu.SetText("åiãCÇÕî@âΩÇ≈Ç≤Ç¥ÇÈÇ©ÅH");
                 foreach(Mura m in _responseMuraList)
                 {
                     var mpos = m.transform.position;
@@ -99,6 +100,7 @@ public class Kaidou : MonoBehaviour
             }
             else
             {
+                otonosamaSerifu.SetText("Ç®ÇµÇÃÇ—Ç≈Ç≤Ç¥ÇÈ");
                 yield return new WaitForSeconds(keepSec);
             }
 

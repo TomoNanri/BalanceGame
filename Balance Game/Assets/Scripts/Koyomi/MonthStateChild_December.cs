@@ -15,6 +15,11 @@ public class MonthStateChild_December : AbstractMonthStateChild
         _nouchi.Add(GameObject.Find("TatsumiMura/Nouchi").GetComponent<Nouchi>());
         base.Initialize(stateType);
     }
+    public override void OnEnter()
+    {
+        _fuukei.SetFuukei(MonthStateController.Kisetsu.Fuyu);
+        base.OnEnter();
+    }
     public override void OnExit()
     {
         if (_koyomi.IsTaLevelUpOrdered)
