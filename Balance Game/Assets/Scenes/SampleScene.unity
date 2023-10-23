@@ -6836,7 +6836,7 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  _WarningSatisfactionLevel: 32
+  _WarningSatisfactionLevel: 35
   _GoodSatisfactionLevel: 72
   alpha: 0.4
   _thresholdOfIkki: 20
@@ -10585,7 +10585,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!114 &770031117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12310,7 +12310,7 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  _WarningSatisfactionLevel: 32
+  _WarningSatisfactionLevel: 35
   _GoodSatisfactionLevel: 72
   alpha: 0.2
   _thresholdOfIkki: 20
@@ -18190,7 +18190,7 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  _WarningSatisfactionLevel: 32
+  _WarningSatisfactionLevel: 35
   _GoodSatisfactionLevel: 72
   alpha: 0.2
   _thresholdOfIkki: 20
@@ -20783,7 +20783,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1582529721
 GameObject:
   m_ObjectHideFlags: 0
@@ -23545,7 +23545,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u56FD\u304C\u8352\u308C\u3066\u3057\u307E\u3044\u307E\u3057\u305F\n\u3000\u304A\u6BBF\u69D8\u306F\u8CAC\u4EFB\u3092\u53D6\u308B\u3053\u3068\u306B\u306A\u308A\u307E\u3057\u305F\n\n\u3000\u3000\u6B21\u306E\u304A\u6BBF\u69D8\u306F\n\u3000\u3000\u3000\u3000\u304D\u3063\u3068\u3046\u307E\u304F\u3084\u308C\u308B\u3067\u3057\u3087\u3046\uFF0E\uFF0E\uFF0E"
+  m_text: "\u56FD\u304C\u8352\u308C\u679C\u3066\u3066\u3057\u307E\u3044\u307E\u3057\u305F\n\u3000\u304A\u6BBF\u69D8\u306E\u884C\u65B9\u306F\u5206\u304B\u308A\u307E\u305B\u3093\n\n\u3000\u3000\u6B21\u306E\u304A\u6BBF\u69D8\u306F\n\u3000\u3000\u3000\u3000\u304D\u3063\u3068\u3046\u307E\u304F\u3084\u308C\u308B\u3067\u3057\u3087\u3046\uFF0E\uFF0E\uFF0E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
   m_sharedMaterial: {fileID: 6745975117411686663, guid: 6936f12c2de18954ca132aab658dc8fd, type: 2}
@@ -23720,7 +23720,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!1 &1805930720
 GameObject:
   m_ObjectHideFlags: 0
@@ -25697,9 +25697,9 @@ MonoBehaviour:
   _satisfaction: 0
   _MaxSatisfaction: 99
   _MinSatisfaction: 1
-  _WarningSatisfactionLevel: 32
+  _WarningSatisfactionLevel: 35
   _GoodSatisfactionLevel: 72
-  alpha: 0.4
+  alpha: 0.2
   _thresholdOfIkki: 20
   _prefab:
   - {fileID: 8330632160437357905, guid: 63072185bed8e6d4e94b05a2be5fe972, type: 3}
@@ -27949,7 +27949,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2056588442
 GameObject:
   m_ObjectHideFlags: 0
