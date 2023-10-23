@@ -100,7 +100,7 @@ public class Kaidou : MonoBehaviour
             }
             else
             {
-                otonosamaSerifu.SetText("‚¨‚µ‚Ì‚Ñ‚Å‚²‚´‚é");
+                otonosamaSerifu.SetText("<color=#0000ff>‚¨‚µ‚Ì‚Ñ‚Å‚²‚´‚é</color>");
                 yield return new WaitForSeconds(keepSec);
             }
 
