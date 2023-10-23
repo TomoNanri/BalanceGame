@@ -12,13 +12,18 @@ public class GameStateChild_Progress : AbstractStateChild
     private Mura _InuiMura;
     private Mura _HitsujisaruMura;
     private Mura _TatsumiMura;
+    private GodOfLuck _dice;
+
     private bool _isEventComplete;
+    private bool _isGameOver;
+
     public override void Initialize(int stateType)
     {
         _gm = GetComponent<GameManager>();
         _koyomi = GameObject.Find("Koyomi").GetComponent<Koyomi>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
         _oshiro.ShisakuEnd += EventEndHandler;
+        _dice = FindAnyObjectByType<GodOfLuck>();
 
         _UshitoraMura = GameObject.Find("UshitoraMura").GetComponent<Mura>();
         _InuiMura = GameObject.Find("InuiMura").GetComponent<Mura>();
@@ -26,32 +31,49 @@ public class GameStateChild_Progress : AbstractStateChild
         _TatsumiMura = GameObject.Find("TatsumiMura").GetComponent<Mura>();
 
         _isEventComplete = false;
+        _isGameOver = false;
 
         base.Initialize(stateType);
     }
     public override void OnEnter()
     {
-        // 翌月突入 
         Debug.Log($"[{this.name}] Enter Progress State!(Next Month Start)");
+    }
+    public override void OnExit()
+    {
+        _isEventComplete = false;
 
-        // 暦の更新
-        _koyomi.GoNextMonth();
+        // 一揆状態ならお殿様の幸運判定を実施する
+        _isGameOver = false;
+        foreach (Mura m in _oshiro.MuraList)
+        {
+            if (m.IsIkkiJoutai)
+            {
+                if (!_dice.DiceCheckD100(_oshiro.Luck, 1))
+                {
+                    _isGameOver = true;
+                }
+            }
+        }
 
         // 村の満足度チェック
         _UshitoraMura.CheckSatisfaction();
         _InuiMura.CheckSatisfaction();
         _HitsujisaruMura.CheckSatisfaction();
         _TatsumiMura.CheckSatisfaction();
-    }
-    public override void OnExit()
-    {
-        _isEventComplete = false;
+
+        // 暦の更新
+        _koyomi.GoNextMonth();
     }
 
     public override int StateUpdate()
     {
         if (_isEventComplete)
         {
+            if (_isGameOver)
+            {
+                return (int)GameManager.StateType.GameOver;
+            }
             _isEventComplete = false;
             return (int)GameManager.StateType.WaitInput;
         }
