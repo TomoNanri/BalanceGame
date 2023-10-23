@@ -20,6 +20,15 @@ public class Intro : MonoBehaviour
         _SEToggle = transform.Find("Panel/SEControl/ToggleOn").GetComponent<Toggle>();
         _audioChanger = FindAnyObjectByType<AudioChanger>();
 
+        if (_BGMToggle.isOn)
+        {
+            _gm.IsOnBGM = true;
+        }
+        if (_SEToggle.isOn)
+        {
+            _gm.IsOnSE = true;
+        }
+
         // âπó ïœçXÇÕÉnÉìÉhÉâìoò^å„
         _soundValume.value = _gm.SoundLevel;
         if (_gm.IsOnBGM)
