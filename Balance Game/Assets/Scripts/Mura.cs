@@ -18,7 +18,7 @@ public class Mura : MonoBehaviour
     [SerializeField]
     private int _MinSatisfaction = 1;
     [SerializeField]
-    private int _WarningSatisfactionLevel = 32;
+    private int _WarningSatisfactionLevel = 35;
     [SerializeField]
     private int _GoodSatisfactionLevel = 72;
     [SerializeField]
@@ -168,15 +168,15 @@ public class Mura : MonoBehaviour
         {
             if( _ikkiNoumin != null)
             {
-                responseText = "おとのさまがアホだからね．．．";
+                responseText = "<color=#f00000>おとのさまがアホだからね．．．</color>";
             }
             else if(_satisfaction < _WarningSatisfactionLevel)
             {
-                responseText = "はらが減っただよ";
+                responseText = "<color=#f00000>はらが減っただよ</color>";
             }
             else if (_satisfaction > _GoodSatisfactionLevel)
             {
-                responseText = "お殿様に感謝しとるよ";
+                responseText = "<color=#f00000>お殿様に感謝しとるよ</color>";
             }
             else
             {
