@@ -41,6 +41,10 @@ public class AudioChanger : MonoBehaviour
 
         if (_gm.IsOnBGM)
         {
+            if (_audioSource.isPlaying)
+            {
+                _audioSource.Stop();
+            }
             _audioSource.loop = true;
 
             switch (bGMType)
