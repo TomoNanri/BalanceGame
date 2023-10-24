@@ -67,6 +67,14 @@ public class TahataHiritsuSlider : MonoBehaviour
         // 田畑比率変更イベントのハンドラ登録
         GameObject.Find("HiritsuCanvas").GetComponent<TahataHiritsuCanvas>().OkEvent += Execute;
     }
+    public void LockMinValue()
+    {
+        _slider.minValue = _slider.value;
+    }
+    public void UnlockMinValue()
+    {
+        _slider.minValue = 0;
+    }
     public void OnChangeValue()
     {
         Debug.Log($"[{_muramei}] Slider の値が変わった！{_slider.value}");

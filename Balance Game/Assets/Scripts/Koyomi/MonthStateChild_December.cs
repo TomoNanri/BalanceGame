@@ -18,6 +18,8 @@ public class MonthStateChild_December : AbstractMonthStateChild
     public override void OnEnter()
     {
         _fuukei.SetFuukei(MonthStateController.Kisetsu.Fuyu);
+        _koyomi.IsAbleToIncreaseTa = true;
+
         base.OnEnter();
     }
     public override void OnExit()

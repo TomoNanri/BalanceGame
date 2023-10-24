@@ -5,7 +5,7 @@ using System;
 
 public class MonthStateController : AbstractStateController
 {
-    public enum Kisetsu { Fuyu = 0, Haru = 1, Natsu = 2, Aki = 3 }
+    public enum Kisetsu { Fuyu = 0, Sakura = 1 ,Haru = 2, Natsu = 3, Inekari = 4, Aki = 5 }
     public enum StateType
     {
         January,
@@ -66,5 +66,10 @@ public class MonthStateController : AbstractStateController
     {
         var element = (AbstractMonthStateChild)stateDic[tsuki];
         element.AddSingleShotEventOnEnter(action);
+    }
+    public void ResetState(int initializeStateType)
+    {
+        CurrentState = initializeStateType;
+        stateDic[CurrentState].OnEnter();
     }
 }

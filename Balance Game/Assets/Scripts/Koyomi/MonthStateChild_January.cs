@@ -8,6 +8,9 @@ public class MonthStateChild_January : AbstractMonthStateChild
     {
         _koyomi.IsMatsuriDone = false;
         _koyomi.SetHiyori();
+        _fuukei.SetFuukei(MonthStateController.Kisetsu.Fuyu);
+        _koyomi.IsAbleToIncreaseTa = true;
+
         base.OnEnter();
     }
     public override int StateUpdate()

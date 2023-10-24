@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class MonthStateChild_February : AbstractMonthStateChild
 {
+    public override void OnEnter()
+    {
+        _fuukei.SetFuukei(MonthStateController.Kisetsu.Fuyu);
+        _koyomi.IsAbleToIncreaseTa = true;
+
+        base.OnEnter();
+    }
     public override int StateUpdate()
     {
         if (_koyomi.IsNewMonth)

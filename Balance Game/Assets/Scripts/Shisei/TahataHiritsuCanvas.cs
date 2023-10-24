@@ -29,7 +29,7 @@ public class TahataHiritsuCanvas : MonoBehaviour
     {
         
     }
-    public void Setup(string msg)
+    public void Setup(string msg, bool isMinValueLocked)
     {
         OkEvent = null;
         _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
@@ -40,6 +40,14 @@ public class TahataHiritsuCanvas : MonoBehaviour
             if (slider != null)
             {
                 slider.SetSliderValue();
+                if (isMinValueLocked)
+                {
+                    slider.LockMinValue();
+                }
+                else
+                {
+                    slider.UnlockMinValue();
+                }
             }
             else
             {

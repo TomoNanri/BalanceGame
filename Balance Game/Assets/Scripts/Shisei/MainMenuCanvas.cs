@@ -121,4 +121,15 @@ public class MainMenuCanvas : MonoBehaviour
             Debug.LogError($"[{name}] OnButton is null!");
         }
     }
+    public void OnBreakButton()
+    {
+        if (OnButton != null)
+        {
+            OnButton(this, new ButtonEventArgs("Break"));
+        }
+        else
+        {
+            Debug.LogError($"[{name}] OnButton is null!");
+        }
+    }
 }

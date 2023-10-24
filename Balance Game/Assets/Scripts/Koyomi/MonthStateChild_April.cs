@@ -8,6 +8,7 @@ public class MonthStateChild_April : AbstractMonthStateChild
     {
         _koyomi.IsMatsuriDone = false;
         _fuukei.SetFuukei(MonthStateController.Kisetsu.Haru);
+        _koyomi.IsAbleToIncreaseTa = true;
 
         base.OnEnter();
     }

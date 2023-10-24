@@ -7,6 +7,7 @@ public class MonthStateChild_July : AbstractMonthStateChild
     public override void OnEnter()
     {
         _fuukei.SetFuukei(MonthStateController.Kisetsu.Natsu);
+        _koyomi.IsAbleToIncreaseTa = false;
         base.OnEnter();
     }
     public override int StateUpdate()
