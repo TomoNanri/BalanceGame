@@ -7,7 +7,7 @@ using TMPro;
 
 public class GameStateChild_Intro : AbstractStateChild
 {
-    private const float _eventShowTime = 3.0f;
+    private const float _eventShowTime = 5.0f;
 
     private GameManager _gm;
     private GameObject _introCanvas;
@@ -38,10 +38,12 @@ public class GameStateChild_Intro : AbstractStateChild
     {
         if (_needOpeningEvent)
         {
-            // V‹KƒQ[ƒ€‚Ìˆ—
+            // V‹KƒQ[ƒ€ƒ|ƒbƒvƒAƒbƒv•\¦
 
             _needOpeningEvent = false;
             StartCoroutine(OpeningEvent(_eventShowTime));
+
+            // K‰^’lŒˆ’è
 
             _oshiro.Luck = _kami.GetDiceD6(4) * 4;
             if (_introCanvas.transform.Find("Panel/LevelSelect/ToggleEasy").GetComponent<Toggle>().isOn)
@@ -63,6 +65,7 @@ public class GameStateChild_Intro : AbstractStateChild
         if (_gm.OnNewGame)
         {
             _gm.OnNewGame = false;
+            _gm.InitializeHandler.Invoke();
             _needOpeningEvent = true;
             return (int)GameManager.StateType.WaitInput;
         }
@@ -78,7 +81,7 @@ public class GameStateChild_Intro : AbstractStateChild
         yield return new WaitForEndOfFrame();
         var _houbiPanel = Instantiate(_gm.HoubiPrefab, Vector3.zero, Quaternion.identity);
         var _text = _houbiPanel.transform.Find("Canvas/Panel/Text").gameObject.GetComponent<TextMeshProUGUI>();
-        _text.SetText($"‘å–¼‚Éæ‚è—§‚Ä‚é‚¼\n\nj‹V‚Ì¬”»‚ğ—^‚¦‚é\n•S–œÎ‘å–¼‚ğ–Úw‚·‚Ì‚¶‚á");
+        _text.SetText($"¡“ú‚©‚ç‚»‚¿‚à‘å–¼‚¶‚á\n\nj‹V‚Ì¬”»‚ğ—^‚¦‚é\n•S–œÎ‘å–¼‚ğ–Úw‚·‚Ì‚¶‚á");
 
 
         yield return new WaitForSeconds(sec);

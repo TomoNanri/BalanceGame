@@ -27,6 +27,8 @@ public class Nouchi : MonoBehaviour
     {
         _gm = FindAnyObjectByType<GameManager>();
         _gm.InitializeHandler += ResetNouchi;
+        _gm.SaveDataHandler += SaveData;
+        _gm.LoadGameProc += LoadData;
 
         _oshiro = FindAnyObjectByType<Oshiro>();
 
@@ -84,6 +86,17 @@ public class Nouchi : MonoBehaviour
         // ìcî®ÇÃî‰ó¶èâä˙ê›íË
         TaNoKazu = NouchiMaxCount / 2;
         HatakeNoKazu = TaNoKazu;
+        _isUpdate = true;
+    }
+    private void SaveData()
+    {
+        PlayerPrefs.SetInt("TaNoKazu", TaNoKazu);
+        PlayerPrefs.SetInt("HatakeNoKazu", HatakeNoKazu);
+    }
+    private void LoadData()
+    {
+        TaNoKazu = PlayerPrefs.GetInt("TaNoKazu", NouchiMaxCount / 2);
+        HatakeNoKazu = PlayerPrefs.GetInt("HatakeNoKazu", NouchiMaxCount - TaNoKazu);
         _isUpdate = true;
     }
     public void SetUpdateFlag()

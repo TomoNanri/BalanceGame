@@ -37,6 +37,9 @@ public class Tokuten : MonoBehaviour
     {
         _gm = GameObject.FindAnyObjectByType<GameManager>();
         _gm.InitializeHandler += ResetTokuten;
+        _gm.SaveDataHandler += SaveData;
+        _gm.LoadGameProc += LoadData;
+
         _kokudakaText = transform.Find("Canvas/KokudakaPanel/CountText").GetComponent<TextMeshProUGUI>();
         _kobansuuText = transform.Find("Canvas/KobanPanel/CountText").GetComponent<TextMeshProUGUI>();
         _previousKokudaka = _kokudaka;
@@ -72,8 +75,18 @@ public class Tokuten : MonoBehaviour
     {
         _kokudaka = 10000;
         _kobanCount = 10000;
-        _previousKokudaka = _kokudaka;
-        _previousKoban = _kobanCount;
+        _previousKokudaka = 0;
+        _previousKoban = 0;
+    }
+    private void SaveData()
+    {
+        PlayerPrefs.SetInt("_kokudaka", _kokudaka);
+        PlayerPrefs.SetInt("_kobanCount", _kobanCount);
+    }
+    private void LoadData()
+    {
+        _kokudaka = PlayerPrefs.GetInt("_kokudaka", 10000);
+        _kobanCount = PlayerPrefs.GetInt("_kobanCount", 20000);
     }
 public void UpdateKokudaka(int kokudaka)
     {

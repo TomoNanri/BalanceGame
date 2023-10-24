@@ -6,6 +6,7 @@ using System;
 public class GameManager : AbstractStateController
 {
     public Action InitializeHandler;
+    public Action SaveDataHandler;
     public enum StateType 
     {
         Initialize, 
@@ -65,6 +66,7 @@ public class GameManager : AbstractStateController
     }
     public bool IsOnBGM { get; set; }
     public bool IsOnSE { get; set; }
+    public bool IsOnVoice { get; set; }
     public float SoundLevel { get; set; } = 0.5f;
     public bool OnNewGame = false;
     public bool OnLoadGame = false;
@@ -103,5 +105,13 @@ public class GameManager : AbstractStateController
     {
         Debug.Log($"Exit Game Button Pushued!");
         Application.Quit();
+    }
+
+    public void SaveData()
+    {
+        if(SaveDataHandler!= null)
+        {
+            SaveDataHandler.Invoke();
+        }
     }
 }

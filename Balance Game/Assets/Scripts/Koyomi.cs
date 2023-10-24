@@ -11,6 +11,7 @@ public class Koyomi : MonoBehaviour
     public bool IsTaLevelUpOrdered { get; set; }
     public bool IsHatakeLevelUpOrdered { get; set; }
     public bool IsMatsuriDone { get; set; }
+    public bool IsAbleToIncreaseTa { get; set; }
     public int Tsuki => _tsuki;
     public int Nen => _nen;
     public int Hiyori => _hiyori;
@@ -50,7 +51,8 @@ public class Koyomi : MonoBehaviour
         IsNewMonth = false;
         _gm = FindAnyObjectByType<GameManager>();
         _gm.InitializeHandler += ResetKoyomi;
-        _gm.LoadGameProc += LoadGame;
+        _gm.SaveDataHandler += SaveData;
+        _gm.LoadGameProc += LoadData;
 
         _dice = FindAnyObjectByType<GodOfLuck>();
 
@@ -84,11 +86,11 @@ public class Koyomi : MonoBehaviour
     }
     public void ShowKoyomi()
     {
-
         _nen = _tsukisuu / 12 + 1;
         _tsuki = _tsukisuu % 12;
+        Debug.Log($"[{name}] Show Koyomi called! _tsukisuu={_tsukisuu}");
 
-        if (_nen == 0)
+        if (_nen == 1)
         {
             _nengouText.SetText($"óﬂÅZ å≥îN");
         }
@@ -144,9 +146,21 @@ public class Koyomi : MonoBehaviour
     {
         _calendar.AddCalendarEvent(tsuki, action);
     }
-    public void LoadGame()
+    private void SaveData()
     {
+        PlayerPrefs.SetInt("_tsukisuu", _tsukisuu);
+        PlayerPrefs.SetInt("_taHosei", _taHosei);
+        PlayerPrefs.SetInt("_hatakeHosei", _hatakeHosei);
+    }
+    private void LoadData()
+    {
+        _tsukisuu = PlayerPrefs.GetInt("_tsukisuu", 0);
+        Debug.Log($"[{name}] _tsukisuu reload! {_tsukisuu}");
+        _taHosei = PlayerPrefs.GetInt("_taHosei", 0);
+        _hatakeHosei = PlayerPrefs.GetInt("_hatakeHosei", 0);
+        ShowKoyomi();
 
+        stateController.ResetState((int)_tsukisuu % 12);
     }
     public void PurchaseNougu()
     {

@@ -8,6 +8,7 @@ public class GameStateChild_InMainMenu : AbstractStateChild
     private Oshiro _oshiro;
     private GameObject _commandCanvas;
     private MainMenuCanvas _mainMenuCanvas;
+    private GameManager _gm;
     private bool _isButtonOn = false;
     private string _buttonName;
     public override void Initialize(int stateType)
@@ -15,6 +16,7 @@ public class GameStateChild_InMainMenu : AbstractStateChild
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
         _commandCanvas = _oshiro.transform.Find("MainMenuCanvas").gameObject;
         _mainMenuCanvas = _commandCanvas.GetComponent<MainMenuCanvas>();
+        _gm = FindAnyObjectByType<GameManager>();
         _mainMenuCanvas.OnButton += OnMainMenuButton;
 
         _commandCanvas.SetActive(false);
@@ -36,6 +38,10 @@ public class GameStateChild_InMainMenu : AbstractStateChild
     {
         // 施政メニューを消す
         _commandCanvas.SetActive(false);
+
+        // ゲームデータを Player Prefs へ保存する
+        _gm.SaveData();
+        
     }
 
     public override int StateUpdate()
@@ -70,6 +76,9 @@ public class GameStateChild_InMainMenu : AbstractStateChild
 
                 case "Pass":
                     return (int)GameManager.StateType.InPass;
+
+                case "Break":
+                    return (int)GameManager.StateType.Intro;
 
                 default:
                     Debug.LogError($"[{name}] Undefind button found.");

@@ -7,6 +7,7 @@ public class GameStateChild_InTahataHiritsu : AbstractStateChild
 {
     private GameManager _gm;
     private Oshiro _oshiro;
+    private Koyomi _koyomi;
     private GameObject _commandCanvas;
     private TahataHiritsuCanvas _tahataHiritsu;
     private bool _isButtonEventOn;
@@ -16,6 +17,7 @@ public class GameStateChild_InTahataHiritsu : AbstractStateChild
     {
         _gm = GetComponent<GameManager>();
         _oshiro = GameObject.Find("Oshiro").GetComponent<Oshiro>();
+        _koyomi = GameObject.Find("Koyomi").GetComponent<Koyomi>();
         _commandCanvas = _oshiro.transform.Find("HiritsuCanvas").gameObject;
         _tahataHiritsu = _commandCanvas.GetComponent<TahataHiritsuCanvas>();
         _tahataHiritsu.OnButton += ButtonEventHandler;
@@ -30,7 +32,7 @@ public class GameStateChild_InTahataHiritsu : AbstractStateChild
         Debug.Log($"[{this.name}] Enter InTahataHiritsu_State!");
         _commandCanvas.SetActive(true);
         _isButtonEventOn = false;
-        _tahataHiritsu.Setup("ç°ÇÕñ≥êßå¿");
+        _tahataHiritsu.Setup(_koyomi.IsAbleToIncreaseTa?"ç°ÇÕñ≥êßå¿" :"ç°ÇÕìcÇëùÇ‚ÇπÇ‹ÇπÇÒ", !_koyomi.IsAbleToIncreaseTa);
     }
     public override void OnExit()
     {

@@ -48,6 +48,8 @@ public class Oshiro : MonoBehaviour
         MuraList.Add(GameObject.Find("TatsumiMura").GetComponent<Mura>());
         _gm = GameObject.FindAnyObjectByType<GameManager>();
         _gm.InitializeHandler += ResetOshiro;
+        _gm.SaveDataHandler += SaveData;
+        _gm.LoadGameProc += LoadData;
 
         IsSelectable = false;
     }
@@ -106,6 +108,21 @@ public class Oshiro : MonoBehaviour
         IsSelectable = false;
         TaLevel = 1;
         HatakeLevel = 1;
-        Luck = 50;
+    }
+    private void SaveData()
+    {
+        PlayerPrefs.SetInt("TaLevel", TaLevel);
+        PlayerPrefs.SetInt("HatakeLevel", HatakeLevel);
+        PlayerPrefs.SetInt("Luck", Luck);
+    }
+    private void LoadData()
+    {
+        TaLevel = PlayerPrefs.GetInt("TaLevel", 1);
+        HatakeLevel = PlayerPrefs.GetInt("HatakeLevel", 1);
+        var luck = PlayerPrefs.GetInt("Luck",0);
+        if(luck != 0)
+        {
+            Luck = luck;
+        }
     }
 }

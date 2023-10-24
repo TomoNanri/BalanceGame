@@ -14,6 +14,7 @@ public class GameStateChild_Loading : AbstractStateChild
     {
         // PlayerPrefs‚Ì“Ç‚İ‚İ
         Debug.Log($"[{this.name}] Enter Loading State!");
+        _gm.LoadGameProc.Invoke();
     }
     public override void OnExit()
     {
