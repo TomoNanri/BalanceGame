@@ -24,7 +24,15 @@ public class Mura : MonoBehaviour
     [SerializeField]
     private float alpha = 0.2f;
     [SerializeField]
-    private int _thresholdOfIkki = 20; 
+    private int _thresholdOfIkki = 20;
+
+    public AudioClip Eehiyori;
+    public AudioClip Harahetta;
+    public AudioClip Sokosoko;
+    public AudioClip Ahojakarane;
+    public AudioClip Kanshasiteruyo;
+
+    private AudioSource _audioSource;
 
     [SerializeField]
     private GameObject[] _prefab;
@@ -51,6 +59,10 @@ public class Mura : MonoBehaviour
     {
         _gm = FindAnyObjectByType<GameManager>();
         _gm.InitializeHandler += ResetMura;
+        _gm.SaveDataHandler += SaveData;
+        _gm.LoadGameProc += LoadData;
+
+        _audioSource = GetComponent<AudioSource>();
 
         _oshiro = FindAnyObjectByType<Oshiro>();
         _dice = FindAnyObjectByType<GodOfLuck>();
@@ -113,6 +125,14 @@ public class Mura : MonoBehaviour
         // 満足度初期化
         _satisfaction = 50;
     }
+    private void SaveData()
+    {
+        PlayerPrefs.SetInt("_satisfaction", _satisfaction);
+    }
+    private void LoadData()
+    {
+        _satisfaction = PlayerPrefs.GetInt("_satisfaction",50);
+    }
     private void StartIkki()
     {
         if (_normalNomin != null)
@@ -163,7 +183,7 @@ public class Mura : MonoBehaviour
     }
     public string Response()
     {
-        string responseText = "ええ日和だねぇ"; 
+        string responseText = "<color=#fefefe>ええ日和だねぇ</color>"; 
         if (_dice.DiceCheckD100(_oshiro.Luck, 1))
         {
             if( _ikkiNoumin != null)
@@ -176,14 +196,46 @@ public class Mura : MonoBehaviour
             }
             else if (_satisfaction > _GoodSatisfactionLevel)
             {
-                responseText = "<color=#f00000>お殿様に感謝しとるよ</color>";
+                responseText = "<color=#f00000>お殿様に感謝してるよ？</color>";
             }
             else
             {
-                responseText = "そこそこかね？";
+                responseText = "<color=#fefefe>そこそこだねぇ？</color>";
             }
         }
         return responseText;
+    }
+    public void Speak(string m)
+    {
+        if (_gm.IsOnVoice)
+        {
+            switch (m)
+            {
+                case "<color=#fefefe>ええ日和だねぇ</color>":
+                    _audioSource.PlayOneShot(Eehiyori, _gm.SoundLevel);
+                    break;
+
+                case "<color=#f00000>はらが減っただよ</color>":
+                    _audioSource.PlayOneShot(Harahetta, _gm.SoundLevel);
+                    break;
+
+                case "<color=#f00000>お殿様に感謝してるよ？</color>":
+                    _audioSource.PlayOneShot(Kanshasiteruyo, _gm.SoundLevel);
+                    break;
+
+                case "<color=#f00000>おとのさまがアホだからね．．．</color>":
+                    _audioSource.PlayOneShot(Ahojakarane, _gm.SoundLevel);
+                    break;
+
+                case "<color=#fefefe>そこそこだねぇ？</color>":
+                    _audioSource.PlayOneShot(Sokosoko, _gm.SoundLevel);
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
     public void StartMatsuri()
     {

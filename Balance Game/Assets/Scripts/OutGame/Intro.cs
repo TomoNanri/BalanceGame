@@ -8,6 +8,7 @@ public class Intro : MonoBehaviour
     private GameManager _gm;
     private Toggle _BGMToggle;
     private Toggle _SEToggle;
+    private Toggle _VoiceToggle;
     private Slider _soundValume;
     private AudioChanger _audioChanger;
 
@@ -18,16 +19,12 @@ public class Intro : MonoBehaviour
         _soundValume = transform.Find("Panel/Volume/Slider").GetComponent<Slider>();
         _BGMToggle = transform.Find("Panel/BGMControl/ToggleOn").GetComponent<Toggle>();
         _SEToggle = transform.Find("Panel/SEControl/ToggleOn").GetComponent<Toggle>();
+        _VoiceToggle = transform.Find("Panel/VoiceControl/ToggleOn").GetComponent<Toggle>();
         _audioChanger = FindAnyObjectByType<AudioChanger>();
 
-        if (_BGMToggle.isOn)
-        {
-            _gm.IsOnBGM = true;
-        }
-        if (_SEToggle.isOn)
-        {
-            _gm.IsOnSE = true;
-        }
+        _gm.IsOnBGM = _BGMToggle.isOn;
+        _gm.IsOnSE = _SEToggle.isOn;
+        _gm.IsOnVoice = _VoiceToggle.isOn;
 
         // âπó ïœçXÇÕÉnÉìÉhÉâìoò^å„
         _soundValume.value = _gm.SoundLevel;
@@ -64,6 +61,17 @@ public class Intro : MonoBehaviour
         else
         {
             _gm.IsOnSE = false;
+        }
+    }
+    public void OnchangeVoiceToggle()
+    {
+        if (_VoiceToggle.isOn)
+        {
+            _gm.IsOnVoice = true;
+        }
+        else
+        {
+            _gm.IsOnVoice = false;
         }
     }
     public void OnChangeVolume()

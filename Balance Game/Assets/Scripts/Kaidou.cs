@@ -94,6 +94,7 @@ public class Kaidou : MonoBehaviour
                     var noumin = Instantiate(_responseNoumin, mpos, Quaternion.identity);
                     var serifu = noumin.transform.Find("Canvas/Panel/Serifu").GetComponent<TextMeshProUGUI>();
                     serifu.SetText(responseMessage);
+                    m.Speak(responseMessage);
                     yield return new WaitForSeconds(keepSec);
                     Destroy(noumin);
                 }
