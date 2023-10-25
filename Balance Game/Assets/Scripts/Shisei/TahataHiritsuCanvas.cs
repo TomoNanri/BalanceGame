@@ -34,8 +34,13 @@ public class TahataHiritsuCanvas : MonoBehaviour
         OkEvent = null;
         _restrictionMSG = transform.Find("Panel/RestrictionText").GetComponent<TextMeshProUGUI>();
         _restrictionMSG.SetText(msg);
-        foreach(Mura m in _oshiro.MuraList)
+
+        Debug.Log($"[{name}] MuraList = {_oshiro.MuraList[0].name}");
+
+        foreach (Mura m in _oshiro.MuraList)
         {
+            Debug.Log($"[{name}] mura.name = {m.name}");
+
             var slider = transform.Find($"Panel/{m.name}").GetComponent<TahataHiritsuSlider>();
             if (slider != null)
             {

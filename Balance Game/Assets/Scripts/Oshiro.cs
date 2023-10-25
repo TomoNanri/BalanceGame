@@ -32,8 +32,7 @@ public class Oshiro : MonoBehaviour
 
     [SerializeField]
     private GameObject _guideOtonosamaPrefab;
-    [SerializeField]
-    private GameObject _seppukuOtonosamaPrefab;
+
 
     private GameObject _otonosama;
     private AudioSource _audioSource;
@@ -42,10 +41,11 @@ public class Oshiro : MonoBehaviour
     void Start()
     {
         MuraList.Clear();
-        MuraList.Add(GameObject.Find("UshitoraMura").GetComponent<Mura>());
-        MuraList.Add(GameObject.Find("InuiMura").GetComponent<Mura>());
-        MuraList.Add(GameObject.Find("HitsujisaruMura").GetComponent<Mura>());
-        MuraList.Add(GameObject.Find("TatsumiMura").GetComponent<Mura>());
+
+        MuraList.Add(GameObject.Find("/UshitoraMura").GetComponent<Mura>());
+        MuraList.Add(GameObject.Find("/InuiMura").GetComponent<Mura>());
+        MuraList.Add(GameObject.Find("/HitsujisaruMura").GetComponent<Mura>());
+        MuraList.Add(GameObject.Find("/TatsumiMura").GetComponent<Mura>());
         _gm = GameObject.FindAnyObjectByType<GameManager>();
         _gm.InitializeHandler += ResetOshiro;
         _gm.SaveDataHandler += SaveData;

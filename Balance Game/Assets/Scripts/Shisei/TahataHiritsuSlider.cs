@@ -19,19 +19,7 @@ public class TahataHiritsuSlider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //_muramei = this.name;
-        //_nouchi = GameObject.Find($"{_muramei}/Nouchi").GetComponent<Nouchi>();
 
-        //_taText = transform.Find("TanokazuText").GetComponent<TextMeshProUGUI>();
-        //_hatakeText = transform.Find("HatakenokazuText").GetComponent<TextMeshProUGUI>();
-
-        //_slider = transform.Find("Hiritsu_Slider").gameObject.GetComponent<Slider>();
-
-        //Debug.Log($"[{name}] _nouchiの田の数={_nouchi.TaNoKazu}　畑の数={_nouchi.HatakeNoKazu}");
-
-
-        //// 田畑比率変更イベントのハンドラ登録
-        //GameObject.Find("HiritsuCanvas").GetComponent<TahataHiritsuCanvas>().OkEvent += Execute;
     }
 
     // Update is called once per frame
@@ -50,7 +38,6 @@ public class TahataHiritsuSlider : MonoBehaviour
         _slider = transform.Find("Hiritsu_Slider").gameObject.GetComponent<Slider>();
 
         Debug.Log($"[{name}] _nouchiの田の数={_nouchi.TaNoKazu}　畑の数={_nouchi.HatakeNoKazu}");
-
     }
     public void SetSliderValue()
     {
