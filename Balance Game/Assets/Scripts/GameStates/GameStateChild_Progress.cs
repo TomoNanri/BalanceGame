@@ -38,6 +38,7 @@ public class GameStateChild_Progress : AbstractStateChild
     public override void OnEnter()
     {
         Debug.Log($"[{this.name}] Enter Progress State!(Next Month Start)");
+        Debug.Log($"[{name}] _isEventComplete = {_isEventComplete}");
     }
     public override void OnExit()
     {
@@ -70,11 +71,12 @@ public class GameStateChild_Progress : AbstractStateChild
     {
         if (_isEventComplete)
         {
+            _isEventComplete = false;
+
             if (_isGameOver)
             {
                 return (int)GameManager.StateType.GameOver;
             }
-            _isEventComplete = false;
             return (int)GameManager.StateType.WaitInput;
         }
         return (int)StateType;
