@@ -1,10 +1,8 @@
 # BalanceGame
 
-## ・ゲーム開始画面
-(./Opening.png)
+[ゲーム開始画面](./Opening.png)
 
-## ・ゲーム画面
-(./InGame.png)
+[ゲーム中画面](./InGame.png)
 
 ## ・ゲーム説明
 
