@@ -1,4 +1,4 @@
-# BalanceGame（あるいは丹沢藩の日常）
+# BalanceGame
 
 ## ・ゲーム開始画面
 
