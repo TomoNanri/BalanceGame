@@ -36,7 +36,7 @@ public class GameStateChild_InShisatsu : AbstractStateChild
         _cost = _tokutenPanel.Kokudaka * 1 / 100;
 
         // コマンドキャンバスを表示する
-        Debug.Log($"[{this.name}] Enter InKyusai_State!");
+        Debug.Log($"[{this.name}] Enter InShisatsu_State!");
         _isButtonEventOn = false;
         _commandCanvas.SetActive(true);
 

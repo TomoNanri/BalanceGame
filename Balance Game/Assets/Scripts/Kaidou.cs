@@ -27,6 +27,8 @@ public class Kaidou : MonoBehaviour
         float width = GetComponent<SpriteRenderer>().bounds.size.x;
 
         _oshiro = FindAnyObjectByType<Oshiro>();
+        _responseMuraList.Clear();
+
 
         switch (name)
         {
@@ -34,32 +36,40 @@ public class Kaidou : MonoBehaviour
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y - height / 3, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y + height / 3, pos.z));
-                _responseMuraList.Add(GameObject.Find("UshitoraMura").GetComponent<Mura>());
-                _responseMuraList.Add(GameObject.Find("InuiMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/UshitoraMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/InuiMura").GetComponent<Mura>());
+                Debug.Log($"[{name}.START] _resposeMuraList[0]={_responseMuraList[0]}");
+
                 break;
 
             case "Minamikaidou":
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y + height / 3, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y - height / 3, pos.z));
-                _responseMuraList.Add(GameObject.Find("TatsumiMura").GetComponent<Mura>());
-                _responseMuraList.Add(GameObject.Find("HitsujisaruMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/TatsumiMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/HitsujisaruMura").GetComponent<Mura>());
+                Debug.Log($"[{name}.START] _resposeMuraList[0]={_responseMuraList[0]}");
+
                 break;
 
             case "Higasikaidou":
                 _otonosamaPosition.Add(new Vector3(pos.x - width / 3, pos.y, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x + width / 3, pos.y, pos.z));
-                _responseMuraList.Add(GameObject.Find("InuiMura").GetComponent<Mura>());
-                _responseMuraList.Add(GameObject.Find("HitsujisaruMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/InuiMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/HitsujisaruMura").GetComponent<Mura>());
+                Debug.Log($"[{name}.START] _resposeMuraList[0]={_responseMuraList[0]}");
+                
                 break;
 
             case "Nisikaidou":
                 _otonosamaPosition.Add(new Vector3(pos.x + width / 3, pos.y, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x, pos.y, pos.z));
                 _otonosamaPosition.Add(new Vector3(pos.x - width / 3, pos.y, pos.z));
-                _responseMuraList.Add(GameObject.Find("TatsumiMura").GetComponent<Mura>());
-                _responseMuraList.Add(GameObject.Find("UshitoraMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/TatsumiMura").GetComponent<Mura>());
+                _responseMuraList.Add(GameObject.Find("/UshitoraMura").GetComponent<Mura>());
+                Debug.Log($"[{name}.START] _resposeMuraList[0]={_responseMuraList[0]}");
+                
                 break;
         }
     }
@@ -75,6 +85,7 @@ public class Kaidou : MonoBehaviour
     }
     IEnumerator Kaiwa(float keepSec,float appearInterval, float rug)
     {
+        Debug.Log($"[{name}] _resposeMuraList = {_responseMuraList}");
         for(int i = 0; i< _otonosamaPosition.Count; i++)
         {
             var pos = _otonosamaPosition[i];
@@ -87,6 +98,7 @@ public class Kaidou : MonoBehaviour
                 otonosamaSerifu.SetText("Œi‹C‚Í”@‰½‚Å‚²‚´‚é‚©H");
                 foreach(Mura m in _responseMuraList)
                 {
+                    Debug.Log($"[{name}] m={m} m.name={m.name}");
                     var mpos = m.transform.position;
                     var responseMessage = m.Response();
                     yield return new WaitForSeconds(rug);
