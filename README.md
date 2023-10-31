@@ -5,6 +5,9 @@
 ## ・ゲーム中画面
 ![ゲーム中画面](./InGame.png)
 
+## WebGL版の実行
+https://bobcatnan.net/Products/Balance/
+
 ## ・ゲーム説明
 
 丹沢の山奥にある、とある藩のお殿様の生活をほのぼのとしたタッチで描いてみました。
